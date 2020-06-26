@@ -1,0 +1,5 @@
+package it.auties.styders.background;
+
+public enum BorderStyle {
+    STATIC_LIGHTING, CONTINUOUS_LIGHTING, BREATH_LIGHTING, DISAPPEARANCE_LIGHTING, CIRCUIT_LIGHTING
+}

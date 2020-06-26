@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background" format="reference"/>
+    <attr name="card" format="reference"/>
+    <attr name="text_color" format="reference"/>
+    <attr name="card_color" format="reference"/>
+    <attr name="seek_bar_color" format="reference"/>
+    <attr name="seek_bar_background" format="reference"/>
+    <attr name="switch_color" format="reference"/>
+    <attr name="switch_background" format="reference"/>
+    <attr name="radio_on" format="reference"/>
+    <attr name="radio_off" format="reference"/>
+    <attr name="activated_tab" format="reference"/>
+    <attr name="enabled_day" format="reference"/>
+    <attr name="disabled_day" format="reference"/>
+    <attr name="timer_text" format="reference"/>
+    <attr name="line_color" format="reference"/>
+</resources>

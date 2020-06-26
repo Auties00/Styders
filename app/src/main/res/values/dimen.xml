@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="screen_spacing_horizontal">16dp</dimen>
+
+</resources>

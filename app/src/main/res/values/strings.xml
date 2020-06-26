@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Styders</string>
+    <string name="border_on">Borders Live:</string>
+    <string name="animation_speed">Animation speed:</string>
+    <string name="borders_brightness">Borders Brightness:</string>
+    <string name="borders_color">Borders color:</string>
+    <string name="thickness_home">Borders thickness:</string>
+    <string name="borders_lock">Borders thickness on lockscreen:</string>
+    <string name="top_radius">Top corners radius:</string>
+    <string name="bottom_corners_radius">Bottom corners radius:</string>
+    <string name="home">Home</string>
+    <string name="notch">Notch</string>
+    <string name="timer">Timer</string>
+    <string name="settings">Settings</string>
+    <string name="enable_notch">Enable notch:</string>
+    <string name="notch_height">Notch height:</string>
+    <string name="notch_width">Notch width:</string>
+    <string name="notch_size_width">Notch sides width:</string>
+    <string name="notch_side_top_horizontal_weight">Notch side top horizontal weight:</string>
+    <string name="notch_side_bottom_horizontal_weight">Notch side bottom horizontal weight:</string>
+    <string name="enable_notification_stylization">Enable notification stylization:</string>
+    <string name="enable_on_the_lockscreen">Enable on the lockscreen</string>
+    <string name="enable_on_the_homescreen">Enable on the homescreen</string>
+    <string name="static_lighting">Static lighting</string>
+    <string name="continuous_lighting">Continuous lighting</string>
+    <string name="breath_lighting">Breath lighting</string>
+    <string name="disappearance_lighting">Disappearance lighting</string>
+    <string name="circuit_lighting">Circuit lighting</string>
+    <string name="borders_style">Borders style:</string>
+    <string name="background_style">Background style:</string>
+    <string name="black_background">Black background</string>
+    <string name="dark_gray_background">Dark gray background</string>
+    <string name="white_background">White background</string>
+    <string name="add_custom_image">Add custom image…</string>
+    <string name="activate_the_borders_live_only">Activate the borders live only:</string>
+    <string name="when_a_notification_arrives">When a notification arrives</string>
+    <string name="when_the_device_is_charging">When the device is charging</string>
+    <string name="when_headphones_are_connected">When headphones are connected</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="white_mode">White mode</string>
+    <string name="when_the_device_is_restarted">When the device is restarted:</string>
+    <string name="styders_restarts_automatically">Styders restarts automatically</string>
+    <string name="styders_stops_until_it_is_manually_restarted">Styders stops until it is manually restarted</string>
+    <string name="styders_style">Styders style:</string>
+    <string name="dark_gray_mode">Dark gray mode</string>
+    <string name="enable_timer">Enable timer:</string>
+    <string name="set_timer">Set timer:</string>
+    <string name="monday">M</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">T</string>
+    <string name="friday">F</string>
+    <string name="saturday">S</string>
+    <string name="sunday">S</string>
+    <string name="stop_night">Styders stops from 22:00 to 7:00</string>
+    <string name="stop_day">Styders stops from 7:00 to 22:00</string>
+    <string name="styders_starts_at">Styders starts at:</string>
+    <string name="styders_stops_at">Styders stops at:</string>
+    <string name="timer_selection">Quick timer selection:</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="see">You can\'t see me!</string>
+    <string name="colors">Saved color sequences…</string>
+    <string name="next">Next</string>
+    <string name="white_theme">White theme</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="gray_theme">Dark gray theme</string>
+    <string name="add_sequence">Add Sequence</string>
+    <string name="sequence_in_use">Sequence in use</string>
+    <string name="saved_sequences">Saved sequences</string>
+    <string name="boot_manager">Android Boot Manager</string>
+    <string name="boot_manager_description">${oem}\'s boot manager prevents Styders from starting automatically when
+        your device is rebooted. To avoid this please allow Styders to automatically manage its booting process.
+    </string>
+    <string name="settings_msg">Go to settings</string>
+    <string name="listen_to_notification">Listen to notifications</string>
+    <string name="listen_description">Please allow Styders to listen for notifications in order for this setting to
+        work
+    </string>
+    <string name="resize">Resize Image</string>
+    <string name="resize_desc">The image size doesn\'t match your screen size: please choose if you want to resize it
+        manually or resize it automatically!
+    </string>
+    <string name="resize_manually">Manually</string>
+    <string name="resize_auto">Automatically</string>
+    <string name="exit">Exit</string>
+    <string name="other_opt">Other options:</string>
+    <string name="unsupported">Unsupported Phone</string>
+    <string name="show_reset">Reset the border in settings</string>
+    <string name="show_error">Show lockscreen support alert</string>
+    <string name="unsupported_desc">Your phone doesn\'t support live wallpapers: please contact your device manufacturer
+        for more info!
+    </string>
+    <string name="tutorial_one">Let\'s start, choose the \n borders thickness!</string>
+    <string name="tutorial_two">Now adapt the corners \n to your phone!</string>
+    <string name="tutorial_three">From here you can adapt \n the border to the notch!</string>
+    <string name="tutorial_four">Activate and adapt the \n notch to your device!</string>
+</resources>

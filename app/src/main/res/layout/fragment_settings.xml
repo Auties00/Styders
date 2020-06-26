@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:background="@android:color/transparent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+        <it.auties.styders.utils.InterceptCardView
+                style="@style/CardStyle.Home"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="17dp"
+                        android:paddingEnd="30dp"
+                        android:text="@string/borders_style"
+                        android:textColor="?attr/text_color"
+                        android:textSize="15dp"
+                        android:layout_marginTop="15dp"
+                        tools:ignore="SpUsage"/>
+
+                <RadioGroup
+                        android:id="@+id/borderStyleGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/borderStyleOptionOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/static_lighting"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/borderStyleOptionTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/continuous_lighting"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/borderStyleOptionThree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/breath_lighting"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/borderStyleOptionFour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/disappearance_lighting"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/borderStyleOptionFive"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/circuit_lighting"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+                </RadioGroup>
+
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+
+
+        <it.auties.styders.utils.InterceptCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardStyle.Home"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="17dp"
+                        android:paddingEnd="30dp"
+                        android:text="@string/background_style"
+                        android:textColor="?attr/text_color"
+                        android:textSize="15dp"
+                        android:layout_marginTop="15dp"
+                        tools:ignore="SpUsage"/>
+                <RadioGroup
+                        android:id="@+id/backgroundStyleGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/backgroundStyleOptionOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/black_background"
+                            android:textColor="?attr/text_color"
+                            android:textSize="15dp"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/backgroundStyleOptionTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dark_gray_background"
+                            android:textColor="?attr/text_color"
+                            android:textSize="15dp"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/backgroundStyleOptionThree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/white_background"
+                            android:textColor="?attr/text_color"
+                            android:textSize="15dp"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/backgroundStyleOptionFour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_custom_image"
+                            android:textColor="?attr/text_color"
+                            android:textSize="15dp"/>
+                </RadioGroup>
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+
+        <it.auties.styders.utils.InterceptCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardStyle.Home"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="17dp"
+                            android:paddingEnd="30dp"
+                            android:text="@string/activate_the_borders_live_only"
+                            android:textColor="?attr/text_color"
+                            android:textSize="15dp"
+                            android:layout_marginTop="15dp"
+                            tools:ignore="SpUsage"/>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:orientation="horizontal">
+                        <CheckBox
+                                android:id="@+id/notificationCheckBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:buttonTint="?attr/radio_on">
+                        </CheckBox>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="?attr/text_color"
+                                android:text="@string/when_a_notification_arrives"
+                                tools:ignore="SpUsage"
+                                android:gravity="center_vertical"
+                                app:buttonTint="@color/white"
+                                android:textSize="15dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:orientation="horizontal">
+                        <CheckBox
+                                android:id="@+id/chargingCheckBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:buttonTint="?attr/radio_on">
+                        </CheckBox>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="?attr/text_color"
+                                android:text="@string/when_the_device_is_charging"
+                                tools:ignore="SpUsage"
+                                android:gravity="center_vertical"
+                                app:buttonTint="@color/white"
+                                android:textSize="15dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingStart="10dp"
+                            android:orientation="horizontal">
+                        <CheckBox
+                                android:id="@+id/headphonesCheckBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:buttonTint="?attr/radio_on">
+                        </CheckBox>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="?attr/text_color"
+                                android:text="@string/when_headphones_are_connected"
+                                android:singleLine="true"
+                                tools:ignore="SpUsage"
+                                android:gravity="center_vertical"
+                                android:textSize="15dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+
+        <it.auties.styders.utils.InterceptCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardStyle.Home"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="17dp"
+                            android:paddingEnd="30dp"
+                            android:text="@string/styders_style"
+                            android:textColor="?attr/text_color"
+                            android:layout_marginTop="15dp"
+                            tools:ignore="SpUsage"
+                            android:textSize="15dp"/>
+                    <RadioGroup
+                            android:id="@+id/stydersStyleGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:buttonTint="?attr/radio_on"
+                                android:id="@+id/stydersStyleOptionOne"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dark_mode"
+                                android:textColor="?attr/text_color"
+                                android:textSize="15dp"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:buttonTint="?attr/radio_on"
+                                android:id="@+id/stydersStyleOptionTwo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dark_gray_mode"
+                                android:textColor="?attr/text_color"
+                                android:textSize="15dp"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:buttonTint="?attr/radio_on"
+                                android:id="@+id/stydersStyleOptionThree"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/white_mode"
+                                android:textColor="?attr/text_color"
+                                android:textSize="15dp"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+
+        <it.auties.styders.utils.InterceptCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardStyle.Home"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="17dp"
+                            android:paddingEnd="30dp"
+                            android:text="@string/when_the_device_is_restarted"
+                            android:textColor="?attr/text_color"
+                            android:layout_marginTop="15dp"
+                            tools:ignore="SpUsage"
+                            android:textSize="15dp"/>
+                    <RadioGroup
+                            android:id="@+id/restartStyleGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:buttonTint="?attr/radio_on"
+                                android:id="@+id/restartStyleOptionOne"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/styders_restarts_automatically"
+                                android:textColor="?attr/text_color"
+                                android:textSize="15dp"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:buttonTint="?attr/radio_on"
+                                android:id="@+id/restartStyleOptionTwo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/styders_stops_until_it_is_manually_restarted"
+                                android:textColor="?attr/text_color"
+                                android:textSize="15dp"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+
+        <it.auties.styders.utils.InterceptCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardStyle.Home"
+                app:cardBackgroundColor="?attr/card"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="60dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="17dp"
+                        android:paddingEnd="30dp"
+                        android:text="@string/other_opt"
+                        android:textColor="?attr/text_color"
+                        android:textSize="15dp"
+                        android:layout_marginTop="15dp"
+                        tools:ignore="SpUsage"/>
+
+                <RadioGroup
+                        android:id="@+id/otherOptionsGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/resetBorderButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/show_reset"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:id="@+id/showErrorButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/show_error"
+                            android:textSize="15dp"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:buttonTint="?attr/radio_on"
+                            android:visibility="gone"
+                            android:id="@+id/invLastOpt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="?attr/text_color"/>
+                </RadioGroup>
+
+            </LinearLayout>
+        </it.auties.styders.utils.InterceptCardView>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Styders</string>
+    <string name="border_on">Bordi animati:</string>
+    <string name="animation_speed">Velocità animazione:</string>
+    <string name="borders_brightness">Luminosità bordi:</string>
+    <string name="borders_color">Colore bordi:</string>
+    <string name="thickness_home">Spessore dei bordi:</string>
+    <string name="borders_lock">Spessore dei bordi nella schermata di blocco:</string>
+    <string name="top_radius">Raggio angoli superiori:</string>
+    <string name="bottom_corners_radius">Raggio angoli inferiori:</string>
+    <string name="home">Home</string>
+    <string name="notch">Notch</string>
+    <string name="timer">Timer</string>
+    <string name="settings">Opzioni</string>
+    <string name="enable_notch">Attiva tacca:</string>
+    <string name="notch_height">Altezza della tacca:</string>
+    <string name="notch_width">Larghezza della tacca:</string>
+    <string name="notch_size_width">Larghezza lati della tacca:</string>
+    <string name="notch_side_top_horizontal_weight">Peso tacca superiore orizzontale:</string>
+    <string name="notch_side_bottom_horizontal_weight">Peso tacca inferiore orizzontale:</string>
+    <string name="enable_notification_stylization">Attiva stilizzazione delle notifiche:</string>
+    <string name="enable_on_the_lockscreen">Abilita sulla schermata di blocco</string>
+    <string name="enable_on_the_homescreen">Abilita sulla schermata base</string>
+    <string name="static_lighting">Illuminazione statica</string>
+    <string name="continuous_lighting">Illuminazione continua</string>
+    <string name="breath_lighting">Illuminazione a respiro</string>
+    <string name="disappearance_lighting">Illuminazione a scomparsa</string>
+    <string name="circuit_lighting">Illuminazione a circuito</string>
+    <string name="borders_style">Stile bordi:</string>
+    <string name="background_style">Stile sfondo:</string>
+    <string name="black_background">Sfondo nero</string>
+    <string name="dark_gray_background">Sfondo grigio scuro</string>
+    <string name="white_background">Sfondo bianco</string>
+    <string name="add_custom_image">Aggiungi immagine personalizzata…</string>
+    <string name="activate_the_borders_live_only">Attiva i bordi animati solo:</string>
+    <string name="when_a_notification_arrives">Quando arriva una notifica</string>
+    <string name="when_the_device_is_charging">Quando il dispositivo è in carica</string>
+    <string name="when_headphones_are_connected">Quando le cuffie sono collegate</string>
+    <string name="dark_mode">Modalità scura</string>
+    <string name="white_mode">Modalità bianca</string>
+    <string name="when_the_device_is_restarted">Al riavvio del dispositivo:</string>
+    <string name="styders_restarts_automatically">Styders si riavvia automaticamente</string>
+    <string name="styders_stops_until_it_is_manually_restarted">Styders si ferma fino al riavvio manuale</string>
+    <string name="styders_style">Stile Styders:</string>
+    <string name="dark_gray_mode">Modalità grigio scuro</string>
+    <string name="enable_timer">Attiva timer:</string>
+    <string name="set_timer">Imposta timer:</string>
+    <string name="monday">L</string>
+    <string name="tuesday">M</string>
+    <string name="wednesday">M</string>
+    <string name="thursday">G</string>
+    <string name="friday">V</string>
+    <string name="saturday">S</string>
+    <string name="sunday">D</string>
+    <string name="stop_night">Styders si ferma dalle 22:00 alle 7:00</string>
+    <string name="stop_day">Styders si ferma dalle 7:00 alle 22:00</string>
+    <string name="styders_starts_at">Styders si avvia:</string>
+    <string name="styders_stops_at">Styders si ferma:</string>
+    <string name="timer_selection">Selezione rapida del timer:</string>
+    <string name="cancel">Annulla</string>
+    <string name="confirm">Conferma</string>
+    <string name="see">You can\'t see me!</string>
+    <string name="colors">Sequenze di colori salvate…</string>
+    <string name="next">Avanti</string>
+    <string name="white_theme">Tema bianco</string>
+    <string name="dark_theme">Tema scuro</string>
+    <string name="gray_theme">Tema grigio scuro</string>
+    <string name="add_sequence">Aggiungi sequenza</string>
+    <string name="sequence_in_use">Sequenza in uso</string>
+    <string name="saved_sequences">Sequenze salvate</string>
+    <string name="boot_manager">Gestore di avvio Android</string>
+    <string name="boot_manager_description">Il gestore di avvio di ${oem} impedisce a Styders di riavviarsi
+        automaticamente. Per evitare ciò, consenti a Styders di gestire automaticamente il processo di avvio.
+    </string>
+    <string name="settings_msg">Vai alle impostazioni</string>
+    <string name="listen_to_notification">Accogliere le notifiche</string>
+    <string name="listen_description">Consenti a Styders di accogliere le notifiche affinché questa impostazione
+        funzioni
+    </string>
+    <string name="resize">Ridemensiona lo sfondo</string>
+    <string name="resize_desc">Lo dimensioni dello sfondo che hai scelto non coincindono con quelle del tuo dispositivo:
+        scegli se vuoi ridimensionare lo sfondo manualmente o automaticamente!
+    </string>
+    <string name="resize_manually">Manualmente</string>
+    <string name="resize_auto">Automaticamente</string>
+    <string name="unsupported">Telefono non suppportato</string>
+    <string name="exit">Esci</string>
+    <string name="other_opt">Altre opzioni:</string>
+    <string name="show_reset">Rimposta il bordo nelle impostazioni</string>
+    <string name="show_error">Mostra il messaggio per il bordo sulla lockscreen</string>
+    <string name="unsupported_desc">Il tuo telefono non supporta gli sfondi animati: contatta l\'OEM per più
+        informazioni!
+    </string>
+    <string name="tutorial_one">Cominciamo, scegli lo \n spessore dei bordi!</string>
+    <string name="tutorial_two">Ora adatta gli angoli \n al tuo telefono!</string>
+    <string name="tutorial_three">Da qui puoi adattare il \n bordo alla tacca!</string>
+    <string name="tutorial_four">Attiva e adatta la \n tacca al tuo dispositivo!</string>
+</resources>

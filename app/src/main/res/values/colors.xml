@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white_background">@color/white</color>
+    <color name="black_background">@color/black</color>
+    <color name="gray_background">@color/gray</color>
+
+    <color name="white_card">#e9e9e9</color>
+    <color name="black_card">#0d0d0d</color>
+    <color name="gray_card">#1f1f1f</color>
+
+    <color name="default_text_color">@color/black</color>
+    <color name="dark_text_color">@color/white</color>
+
+    <color name="white_card_color">@color/black</color>
+    <color name="black_card_color">@color/white</color>
+    <color name="gray_card_color">@color/white</color>
+
+    <color name="black_seek_bar">@color/white</color>
+    <color name="gray_seek_bar">@color/white</color>
+    <color name="white_seek_bar">@color/black</color>
+
+    <color name="black_seek_bar_background">#666666</color>
+    <color name="gray_seek_bar_background">#666666</color>
+    <color name="white_seek_bar_background">#969696</color>
+
+    <color name="black_switch">@color/white</color>
+    <color name="gray_switch">@color/white</color>
+    <color name="white_switch">@color/black</color>
+
+    <color name="black_switch_background">#808080</color>
+    <color name="gray_switch_background">#808080</color>
+    <color name="white_switch_background">#575757</color>
+
+    <color name="black_radio_background">@color/white</color>
+    <color name="white_radio_background">@color/black</color>
+
+    <color name="black_day_enabled">@color/white</color>
+    <color name="gray_day_enabled">@color/white</color>
+    <color name="white_day_enabled">@color/black</color>
+
+    <color name="black_day_disabled">#565656</color>
+    <color name="gray_day_disabled">#565656</color>
+    <color name="white_day_disabled">#969696</color>
+
+    <color name="black_timer_text">#828484</color>
+    <color name="gray_timer_text">#414141</color>
+    <color name="white_timer_text">#b8b8b8</color>
+
+    <color name="black">#000000</color>
+    <color name="gray">#1a1a1a</color>
+    <color name="white">#ffffff</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="light_gray">#B2B2B2</color>
+    <color name="strong_gray">#9A9A9A</color>
+
+    <color name="gray_text">#828484</color>
+    <color name="blue_text">#0288d1</color>
+
+    <color name="yellow">#ffff00</color>
+    <color name="red">#ffff4444</color>
+    <color name="purple">#ffaa66cc</color>
+    <color name="blue">#ff0099cc</color>
+    <color name="aqua">#ff00ffff</color>
+
+    <color name="blue_dark">#ff37474f</color>
+    <color name="helping_blue">#4acced</color>
+</resources>

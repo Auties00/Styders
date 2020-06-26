@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
+
+    <it.auties.styders.utils.InterceptCardView
+            android:layout_marginTop="40dp"
+            android:id="@+id/timerSettingsOne"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            style="@style/CardStyle.Home"
+            app:cardBackgroundColor="?attr/card"
+            app:cardCornerRadius="20dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true">
+
+            <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/timerSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:longClickable="false"
+                    android:paddingStart="3dp"
+                    android:paddingTop="-5dp"
+                    android:paddingEnd="20dp"
+                    android:theme="@style/EnableSwitch"
+                    android:layout_alignParentEnd="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="30dp"
+                    android:text="@string/enable_timer"
+                    android:gravity="center_vertical"
+                    android:textColor="?attr/text_color"
+                    android:textSize="15dp"
+                    tools:ignore="SpUsage"/>
+
+        </RelativeLayout>
+    </it.auties.styders.utils.InterceptCardView>
+
+    <it.auties.styders.utils.InterceptCardView
+            android:id="@+id/timerSettingsTwo"
+            style="@style/CardStyle.Home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timerSettingsOne"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="?attr/card"
+            app:cardCornerRadius="20dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="30dp"
+                    android:text="@string/set_timer"
+                    android:textColor="?attr/text_color"
+                    android:textSize="15dp"
+                    tools:ignore="SpUsage"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/timer_text"
+                        android:text="@string/styders_starts_at"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="15dp"
+                        android:layout_weight="1"
+                        tools:ignore="SpUsage"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/startingTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/text_color"
+                        android:text="22:00"
+                        android:layout_gravity="end"
+                        android:textSize="40sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/timer_text"
+                        android:text="@string/styders_stops_at"
+                        android:layout_marginStart="40dp"
+                        android:singleLine="true"
+                        android:textSize="15dp"
+                        tools:ignore="SpUsage"
+                        android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endingTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7:00"
+                        android:textColor="?attr/text_color"
+                        android:singleLine="true"
+                        android:textSize="40sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/monday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="MONDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tuesday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="TUESDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wednesday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="WEDNESDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/thursday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="THURSDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/friday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="FRIDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/saturday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="SATURDAY"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sunday"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:tag="SUNDAY"/>
+            </LinearLayout>
+        </LinearLayout>
+    </it.auties.styders.utils.InterceptCardView>
+
+    <it.auties.styders.utils.InterceptCardView
+            android:id="@+id/timerSettingsThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardStyle.Home"
+            android:layout_below="@+id/timerSettingsTwo"
+            app:cardBackgroundColor="?attr/card"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="20dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="17dp"
+                    android:paddingEnd="30dp"
+                    android:text="@string/timer_selection"
+                    android:textColor="?attr/text_color"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    tools:ignore="SpUsage"/>
+            <RadioGroup
+                    android:id="@+id/timerOptionGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:buttonTint="?attr/radio_on"
+                        android:id="@+id/timerOptionOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/text_color"
+                        android:text="@string/stop_night"
+                        android:textSize="15dp"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:buttonTint="?attr/radio_on"
+                        android:id="@+id/timerOptionTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stop_day"
+                        android:textColor="?attr/text_color"
+                        android:textSize="15dp"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:buttonTint="?attr/radio_on"
+                        android:id="@+id/timerOptionInvisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/see"
+                        android:textColor="?attr/text_color"
+                        android:textSize="9.27pt"
+                        android:visibility="gone"/>
+
+            </RadioGroup>
+        </LinearLayout>
+    </it.auties.styders.utils.InterceptCardView>
+</RelativeLayout>
