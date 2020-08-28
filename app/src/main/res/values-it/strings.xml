@@ -60,6 +60,7 @@
     <string name="timer_selection">Selezione rapida del timer:</string>
     <string name="cancel">Annulla</string>
     <string name="confirm">Conferma</string>
+    <string name="ok">Okay</string>
     <string name="see">You can\'t see me!</string>
     <string name="colors">Sequenze di colori salvate…</string>
     <string name="next">Avanti</string>
@@ -77,6 +78,9 @@
     <string name="listen_to_notification">Accogliere le notifiche</string>
     <string name="listen_description">Consenti a Styders di accogliere le notifiche affinché questa impostazione
         funzioni
+    </string>
+    <string name="unsupported_notification_desc">Il tuo telefono non consente a Styders di accogliere le notifiche: contatta l\'OEM per più
+        informazioni!
     </string>
     <string name="resize">Ridemensiona lo sfondo</string>
     <string name="resize_desc">Lo dimensioni dello sfondo che hai scelto non coincindono con quelle del tuo dispositivo:
@@ -96,4 +100,8 @@
     <string name="tutorial_two">Ora adatta gli angoli \n al tuo telefono!</string>
     <string name="tutorial_three">Da qui puoi adattare il \n bordo alla tacca!</string>
     <string name="tutorial_four">Attiva e adatta la \n tacca al tuo dispositivo!</string>
+    <string name="delete">Rimuovi</string>
+    <string name="not_found">L\'immagine non è stata trovata</string>
+    <string name="maximum_num_of_sequences">Perfavore rimuovi una sequenza prima di aggiungerne un\'altra</string>
+    <string name="minimum_num_of_sequences">Non puoi cancellare una sequenza quando ne rimane una sola</string>
 </resources>

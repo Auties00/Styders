@@ -17,7 +17,7 @@ import it.auties.styders.main.MainActivity;
 
 public class TimePickerView extends BottomSheetDialog {
     private final MainActivity mainActivity = MainActivity.getMainActivity();
-    private final WallpaperSettings settings = WallpaperSettings.getInstance(mainActivity.getApplicationContext().getFilesDir());
+    private final WallpaperSettings settings = mainActivity.getSettings();
     private TimerFragment fragment;
     private TimePickerMode mode;
     private int currentHour;
@@ -98,7 +98,6 @@ public class TimePickerView extends BottomSheetDialog {
                 fragment.bindText(fragment.getView());
                 fragment.setChecked(fragment.getView(), R.id.timerOptionInvisible);
                 settings.setTimerQuickOption(TimerQuickOptions.CUSTOM);
-                settings.schedulePendingIntent();
             }
 
             dismiss();

@@ -1,5 +1,6 @@
 package it.auties.styders.wallpaper;
 
+import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -48,6 +49,12 @@ public class WallpaperSetActivity extends AppCompatActivity {
                     .setCancelable(false)
                     .setPositiveButton(R.string.exit, view -> System.exit(0))
                     .show();
+            return;
+        }
+
+        WallpaperInfo info = WallpaperManager.getInstance(this).getWallpaperInfo();
+        if (info != null && info.getPackageName().equals(this.getPackageName())) {
+            launchHome();
             return;
         }
 

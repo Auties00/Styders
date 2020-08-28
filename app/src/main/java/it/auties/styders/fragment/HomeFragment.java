@@ -2,7 +2,6 @@ package it.auties.styders.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import it.auties.styders.background.StydersStyle;
 import it.auties.styders.background.WallpaperSetting;
 import it.auties.styders.background.WallpaperSettings;
 import it.auties.styders.main.MainActivity;
-import it.auties.styders.utils.BitmapUtils;
 import it.auties.styders.utils.ColorSequencesView;
 import it.auties.styders.wallpaper.WallPaperService;
 import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog;
@@ -87,10 +85,10 @@ public class HomeFragment extends Fragment {
 
     private void bindAllSeekBars(View fragment) {
         bindSeekBar(fragment, R.id.seekBarTwo, WallpaperSetting.BORDER_SPEED);
-        bindSeekBar(fragment, R.id.seekBarFive, WallpaperSetting.BORDER_SIZE_HOME);
+        bindSeekBar(fragment, R.id.seekBarFive, WallpaperSetting.BORDER_HOME);
         bindSeekBar(fragment, R.id.seekBarEight, WallpaperSetting.RADIUS_BOTTOM);
         bindSeekBar(fragment, R.id.seekBarSeven, WallpaperSetting.RADIUS_TOP);
-        bindSeekBar(fragment, R.id.seekBarThree, WallpaperSetting.BORDER_BRIGHTNESS);
+        bindSeekBar(fragment, R.id.seekBarThree, WallpaperSetting.IMAGE_BRIGHTNESS);
     }
 
     private void bindSeekBar(View fragment, int seekBarId, final String preference) {
@@ -99,7 +97,7 @@ public class HomeFragment extends Fragment {
             case WallpaperSetting.BORDER_SPEED:
                 speedSeekBar.setProgress(settings.getBorderSpeed());
                 break;
-            case WallpaperSetting.BORDER_SIZE_HOME:
+            case WallpaperSetting.BORDER_HOME:
                 speedSeekBar.setProgress(settings.getBorderSizeHomeScreen());
                 break;
             case WallpaperSetting.RADIUS_BOTTOM:
@@ -108,7 +106,7 @@ public class HomeFragment extends Fragment {
             case WallpaperSetting.RADIUS_TOP:
                 speedSeekBar.setProgress(settings.getRadiusTop());
                 break;
-            case WallpaperSetting.BORDER_BRIGHTNESS:
+            case WallpaperSetting.IMAGE_BRIGHTNESS:
                 speedSeekBar.setProgress(settings.getImageBorderBrightness());
                 break;
         }
@@ -119,7 +117,7 @@ public class HomeFragment extends Fragment {
                     case WallpaperSetting.BORDER_SPEED:
                         settings.setBorderSpeed(i);
                         break;
-                    case WallpaperSetting.BORDER_SIZE_HOME:
+                    case WallpaperSetting.BORDER_HOME:
                         settings.setBorderSizeHomeScreen(i);
                         break;
                     case WallpaperSetting.RADIUS_BOTTOM:
@@ -128,7 +126,7 @@ public class HomeFragment extends Fragment {
                     case WallpaperSetting.RADIUS_TOP:
                         settings.setRadiusTop(i);
                         break;
-                    case WallpaperSetting.BORDER_BRIGHTNESS:
+                    case WallpaperSetting.IMAGE_BRIGHTNESS:
                         settings.setImageBorderBrightness(i);
                         break;
                 }

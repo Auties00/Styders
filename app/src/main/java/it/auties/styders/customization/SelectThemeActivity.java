@@ -40,6 +40,8 @@ public class SelectThemeActivity extends AppCompatActivity {
         group.setOnCheckedChangeListener((gr, checkedId) -> {
             switch (checkedId) {
                 case R.id.startStyleOptionsOne:
+                    getWindow().setStatusBarColor(Color.WHITE);
+                    getWindow().setNavigationBarColor(Color.WHITE);
                     bg.setBackgroundColor(getResources().getColor(R.color.white));
                     button.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
                     button.setTextColor(Color.WHITE);
@@ -52,6 +54,8 @@ public class SelectThemeActivity extends AppCompatActivity {
                     this.stydersStyle = StydersStyle.WHITE;
                     break;
                 case R.id.startStyleOptionsTwo:
+                    getWindow().setStatusBarColor(Color.BLACK);
+                    getWindow().setNavigationBarColor(Color.BLACK);
                     bg.setBackgroundColor(getResources().getColor(R.color.black));
                     button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                     button.setTextColor(Color.BLACK);
@@ -64,6 +68,8 @@ public class SelectThemeActivity extends AppCompatActivity {
                     this.stydersStyle = StydersStyle.DARK;
                     break;
                 case R.id.startStyleOptionsThree:
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.gray_background));
+                    getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_background));
                     bg.setBackgroundColor(getResources().getColor(R.color.gray_background));
                     button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                     button.setTextColor(Color.BLACK);

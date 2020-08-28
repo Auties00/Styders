@@ -53,6 +53,7 @@
     <string name="friday">F</string>
     <string name="saturday">S</string>
     <string name="sunday">S</string>
+    <string name="ok">Okay</string>
     <string name="stop_night">Styders stops from 22:00 to 7:00</string>
     <string name="stop_day">Styders stops from 7:00 to 22:00</string>
     <string name="styders_starts_at">Styders starts at:</string>
@@ -96,4 +97,11 @@
     <string name="tutorial_two">Now adapt the corners \n to your phone!</string>
     <string name="tutorial_three">From here you can adapt \n the border to the notch!</string>
     <string name="tutorial_four">Activate and adapt the \n notch to your device!</string>
+    <string name="unsupported_notification_desc">Your phone doesn\'t support notification listeners: please contact your device manufacturer
+        for more info!
+    </string>
+    <string name="delete">Delete</string>
+    <string name="not_found">The image wasn\'t found!</string>
+    <string name="maximum_num_of_sequences">Please delete a sequence before adding a new one</string>
+    <string name="minimum_num_of_sequences">You can\'t delete a sequence when you only have one</string>
 </resources>

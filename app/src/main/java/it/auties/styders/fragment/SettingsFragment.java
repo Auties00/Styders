@@ -1,13 +1,11 @@
 package it.auties.styders.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +25,10 @@ import it.auties.styders.background.RestartOption;
 import it.auties.styders.background.StydersStyle;
 import it.auties.styders.background.ToggleBorderOption;
 import it.auties.styders.background.WallpaperSettings;
-import it.auties.styders.main.MainActivity;
 import it.auties.styders.customization.LockscreenMessageActivity;
+import it.auties.styders.main.MainActivity;
+import it.auties.styders.utils.IntentUtils;
+import it.auties.styders.utils.NotificationUtils;
 import it.auties.styders.utils.PowerUtils;
 import it.auties.styders.wallpaper.WallpaperSetActivity;
 
@@ -52,7 +52,6 @@ public class SettingsFragment extends Fragment {
 
         bindOptions(view);
         setListeners(view);
-        settings.adjustState(mainActivity.getApplicationContext());
 
         return view;
     }
@@ -239,13 +238,40 @@ public class SettingsFragment extends Fragment {
         CheckBox checkBox2 = fragment.findViewById(R.id.headphonesCheckBox);
         checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
-                checkForNotificationPermission(mainActivity);
+                if(NotificationUtils.shouldAskForPermission(mainActivity)){
+                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                    if(IntentUtils.isCallable(mainActivity, intent)) {
+                        new LovelyStandardDialog(MainActivity.getMainActivity())
+                                .setTopColorRes(R.color.blue_dark)
+                                .setIcon(R.drawable.ic_info_outline_white_36dp)
+                                .setTitle(mainActivity.getString(R.string.listen_to_notification))
+                                .setMessage(mainActivity.getString(R.string.listen_description))
+                                .setPositiveButton(mainActivity.getString(R.string.settings_msg), view -> {
+                                    mainActivity.setPermissionCallback(() -> {
+                                        if(NotificationUtils.shouldAskForPermission(mainActivity)){
+                                            compoundButton.setChecked(false);
+                                        }
+                                    });
+                                    startActivity(intent);
+                                })
+                                .setCancelable(false)
+                                .show();
+                    }else{
+                        new LovelyStandardDialog(MainActivity.getMainActivity())
+                                .setTopColorRes(R.color.blue_dark)
+                                .setIcon(R.drawable.ic_info_outline_white_36dp)
+                                .setTitle(mainActivity.getString(R.string.unsupported))
+                                .setMessage(mainActivity.getString(R.string.unsupported_notification_desc))
+                                .setPositiveButton(mainActivity.getString(R.string.ok), view ->  compoundButton.setChecked(false))
+                                .setCancelable(false)
+                                .show();
+                    }
+                }
+
                 settings.addToggleOption(ToggleBorderOption.NOTIFICATION);
             } else {
                 settings.removeToggleOption(ToggleBorderOption.NOTIFICATION);
             }
-
-            settings.adjustState(mainActivity.getApplicationContext());
         });
         checkBox1.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
@@ -254,7 +280,6 @@ public class SettingsFragment extends Fragment {
                 settings.removeToggleOption(ToggleBorderOption.CHARGER);
             }
 
-            settings.adjustState(mainActivity.getApplicationContext());
         });
         checkBox2.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
@@ -262,7 +287,6 @@ public class SettingsFragment extends Fragment {
             } else {
                 settings.removeToggleOption(ToggleBorderOption.HEADPHONES);
             }
-            settings.adjustState(mainActivity.getApplicationContext());
         });
     }
 
@@ -271,20 +295,5 @@ public class SettingsFragment extends Fragment {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(color);
         return bitmap;
-    }
-
-    private void checkForNotificationPermission(Context context) {
-        String notificationListenerString = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-
-        if (notificationListenerString == null || !notificationListenerString.contains(context.getPackageName())) {
-            new LovelyStandardDialog(MainActivity.getMainActivity())
-                    .setTopColorRes(R.color.blue_dark)
-                    .setIcon(R.drawable.ic_info_outline_white_36dp)
-                    .setTitle(context.getString(R.string.listen_to_notification))
-                    .setMessage(context.getString(R.string.listen_description))
-                    .setPositiveButton(context.getString(R.string.settings_msg), view -> startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")))
-                    .setCancelable(true)
-                    .show();
-        }
     }
 }

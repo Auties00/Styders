@@ -1,20 +1,12 @@
 package it.auties.styders.utils;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import androidx.annotation.ColorInt;
 import androidx.viewpager.widget.ViewPager;
-
-import it.auties.styders.main.MainActivity;
 
 public class BlockedViewPager extends ViewPager {
     private boolean enabled;
@@ -40,26 +32,6 @@ public class BlockedViewPager extends ViewPager {
         }
 
         return false;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (MainActivity.getMainActivity().isTutorial()) {
-            int gray = adjustAlpha(Color.parseColor("#242424"), 0.98F);
-
-            ColorMatrix cm = new ColorMatrix();
-            cm.setSaturation(0);
-            Paint paint = new Paint();
-
-            ColorFilter filter = new PorterDuffColorFilter(gray, PorterDuff.Mode.SRC_ATOP);
-            paint.setColorFilter(filter);
-
-            canvas.saveLayer(null, paint, Canvas.ALL_SAVE_FLAG);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-        } else {
-            super.dispatchDraw(canvas);
-        }
     }
 
     @ColorInt

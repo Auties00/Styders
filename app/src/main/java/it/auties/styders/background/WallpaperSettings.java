@@ -1,115 +1,121 @@
 package it.auties.styders.background;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 import android.util.TypedValue;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import it.auties.styders.R;
 import it.auties.styders.main.MainActivity;
-import it.auties.styders.utils.AudioUtils;
-import it.auties.styders.utils.PowerUtils;
 import it.auties.styders.utils.SerializableBitmap;
 import it.auties.styders.wallpaper.WallPaperService;
 
-public class WallpaperSettings {
-    @Expose(serialize = false, deserialize = false)
-    private static WallpaperSettings instance;
-    @Expose
-    private boolean borderEnabled;
-    @Expose
-    private boolean timerEnabled;
-    @Expose
-    private int borderSizeHomeScreen;
-    @Expose
-    private int borderSpeed;
-    @Expose
-    private boolean notch;
-    @Expose
-    private int notchHeight;
-    @Expose
-    private int notchWidth;
-    @Expose
-    private int notchBottomFull;
-    @Expose
-    private int notchBottom;
-    @Expose
-    private int notchTop;
-    @Expose
-    private int radiusBottom;
-    @Expose
-    private int radiusTop;
-    @Expose
-    private SerializableBitmap background;
-    @Expose
-    private boolean newImage;
-    @Expose
-    private int imageBorderBrightness;
-    @Expose
-    private ColorSequence sequence;
-    @Expose
-    private BorderStyle borderStyle;
-    @Expose
-    private BackgroundStyle backgroundStyle;
-    @Expose
-    private StydersStyle stydersStyle;
-    @Expose
-    private Set<ToggleBorderOption> activateLiveBorderOnlyWhen;
-    @Expose
-    private RestartOption restartOption;
-    @Expose
-    private boolean hiddenEnable;
-    @Expose
-    private boolean timerHidden;
-    @Expose(serialize = false, deserialize = false)
-    private boolean newColor;
-    @Expose(serialize = false, deserialize = false)
-    private AppState appState;
-    @Expose(serialize = false, deserialize = false)
-    private ShowState showState;
-    @Expose
-    private int startingHours;
-    @Expose
-    private int startingMinutes;
-    @Expose
-    private int endingHours;
-    @Expose
-    private int endingMinutes;
-    @Expose
-    private Set<Day> timerDays;
-    @Expose
-    private TimerQuickOptions timerQuickOption;
-    @Expose(serialize = false, deserialize = false)
-    private Bitmap black;
-    @Expose
-    private BorderStyle lastBorder;
+import static it.auties.styders.background.WallpaperSetting.ACTIVATE_CONDITIONS;
+import static it.auties.styders.background.WallpaperSetting.BACKGROUND_STYLE;
+import static it.auties.styders.background.WallpaperSetting.BORDER_ENABLED;
+import static it.auties.styders.background.WallpaperSetting.BORDER_HOME;
+import static it.auties.styders.background.WallpaperSetting.BORDER_SPEED;
+import static it.auties.styders.background.WallpaperSetting.BORDER_STYLE;
+import static it.auties.styders.background.WallpaperSetting.ENDING_HOURS;
+import static it.auties.styders.background.WallpaperSetting.ENDING_MINUTES;
+import static it.auties.styders.background.WallpaperSetting.IMAGE_BRIGHTNESS;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_BOTTOM;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_BOTTOM_FULL;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_ENABLED;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_HEIGHT;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_TOP;
+import static it.auties.styders.background.WallpaperSetting.NOTCH_WIDTH;
+import static it.auties.styders.background.WallpaperSetting.RADIUS_BOTTOM;
+import static it.auties.styders.background.WallpaperSetting.RADIUS_TOP;
+import static it.auties.styders.background.WallpaperSetting.RESTART;
+import static it.auties.styders.background.WallpaperSetting.SEQUENCES;
+import static it.auties.styders.background.WallpaperSetting.STARTING_HOURS;
+import static it.auties.styders.background.WallpaperSetting.STARTING_MINUTES;
+import static it.auties.styders.background.WallpaperSetting.STYLE;
+import static it.auties.styders.background.WallpaperSetting.TIMER_DAYS;
+import static it.auties.styders.background.WallpaperSetting.TIMER_ENABLED;
+import static it.auties.styders.background.WallpaperSetting.TIMER_QUICK_OPTION;
 
+public class WallpaperSettings {
+    private static WallpaperSettings instance;
+    private boolean borderEnabled;
+    private boolean timerEnabled;
+    private int borderSizeHomeScreen;
+    private int borderSpeed;
+    private boolean notch;
+    private int notchHeight;
+    private int notchWidth;
+    private int notchBottomFull;
+    private int notchBottom;
+    private int notchTop;
+    private int radiusBottom;
+    private int radiusTop;
+    private SerializableBitmap background;
+    private int imageBorderBrightness;
+    private ColorSequence sequence;
+    private BorderStyle borderStyle;
+    private BackgroundStyle backgroundStyle;
+    private StydersStyle stydersStyle;
+    private Set<ToggleBorderOption> activateLiveBorderOnlyWhen;
+    private RestartOption restartOption;
+    private boolean newColor;
+    private AppState appState;
+    private int startingHours;
+    private int startingMinutes;
+    private int endingHours;
+    private int endingMinutes;
+    private Set<Day> timerDays;
+    private TimerQuickOptions timerQuickOption;
+    private Bitmap black;
+    private BorderStyle lastBorder;
 
     private WallpaperSettings() {
 
     }
 
-    private WallpaperSettings init(File dir) {
-        File check = new File(dir, "styders.txt");
-        if (!check.exists()) {
+    private WallpaperSettings init(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("Styders", Context.MODE_PRIVATE);
+        if (!preferences.getBoolean("setup", false)) {
+            preferences
+                    .edit()
+                    .putBoolean(BORDER_ENABLED, true)
+                    .putBoolean(TIMER_ENABLED, false)
+                    .putInt(BORDER_SPEED, 80)
+                    .putInt(BORDER_HOME, 50)
+                    .putInt(RADIUS_TOP, 96)
+                    .putInt(RADIUS_BOTTOM, 76)
+                    .putInt(IMAGE_BRIGHTNESS, 100)
+                    .putBoolean(NOTCH_ENABLED, false)
+                    .putString(SEQUENCES, new Gson().toJson(ColorSequence.empty(), ColorSequence.class))
+                    .putInt(BORDER_STYLE, BorderStyle.CONTINUOUS_LIGHTING.ordinal())
+                    .putInt(BACKGROUND_STYLE, BackgroundStyle.BLACK.ordinal())
+                    .putInt(RESTART, RestartOption.NONE.ordinal())
+                    .putInt(STYLE, StydersStyle.DARK_GRAY.ordinal())
+                    .putStringSet(ACTIVATE_CONDITIONS, new HashSet<>())
+                    .putInt(STARTING_HOURS, 7)
+                    .putInt(STARTING_MINUTES, 0)
+                    .putInt(ENDING_HOURS, 22)
+                    .putInt(ENDING_MINUTES, 0)
+                    .putInt(TIMER_QUICK_OPTION, TimerQuickOptions.NIGHT.ordinal())
+                    .putInt(NOTCH_HEIGHT, 80)
+                    .putInt(NOTCH_WIDTH, 88)
+                    .putInt(NOTCH_BOTTOM_FULL, 92)
+                    .putInt(NOTCH_TOP, 43)
+                    .putInt(NOTCH_BOTTOM, 98)
+                    .putStringSet(TIMER_DAYS, new HashSet<>(Day.valuesAsString()))
+                    .putBoolean("setup", true)
+                    .apply();
+
             this.borderEnabled = true;
             this.timerEnabled = false;
             this.borderSpeed = 80;
@@ -125,7 +131,7 @@ public class WallpaperSettings {
             this.restartOption = RestartOption.NONE;
             this.stydersStyle = StydersStyle.DARK_GRAY;
             this.activateLiveBorderOnlyWhen = new HashSet<>();
-            this.hiddenEnable = false;
+
             this.appState = AppState.IN;
             this.startingHours = 7;
             this.startingMinutes = 0;
@@ -133,78 +139,77 @@ public class WallpaperSettings {
             this.endingMinutes = 0;
             this.timerQuickOption = TimerQuickOptions.NIGHT;
             this.timerDays = new HashSet<>();
-            this.timerHidden = false;
+            timerDays.addAll(Arrays.asList(Day.values()));
             this.notchHeight = 80;
             this.notchWidth = 88;
             this.notchBottomFull = 92;
             this.notchTop = 43;
             this.notchBottom = 98;
-            this.black = getBitmapFromColor();
-            timerDays.addAll(Arrays.asList(Day.values()));
-            try {
-                if (!check.createNewFile()) {
-                    Log.d("[FileIO]", "Checker file couldn't be created!");
+        }else {
+            Gson gson = new Gson();
+            this.borderEnabled = preferences.getBoolean(WallpaperSetting.BORDER_ENABLED, true);
+            this.timerEnabled = preferences.getBoolean(WallpaperSetting.TIMER_ENABLED, false);
+            this.borderSpeed = preferences.getInt(WallpaperSetting.BORDER_SPEED, 80);
+            this.borderSizeHomeScreen = preferences.getInt(WallpaperSetting.BORDER_HOME, 50);
+            this.radiusBottom = preferences.getInt(WallpaperSetting.RADIUS_BOTTOM, 76);
+            this.radiusTop = preferences.getInt(WallpaperSetting.RADIUS_TOP, 96);
+            this.imageBorderBrightness = preferences.getInt(WallpaperSetting.IMAGE_BRIGHTNESS, 80);
+            this.notch = preferences.getBoolean(WallpaperSetting.NOTCH_ENABLED, false);
+            this.background = new SerializableBitmap(getBitmapFromColor());
+            this.sequence = preferences.contains(WallpaperSetting.SEQUENCES) ? gson.fromJson(preferences.getString(WallpaperSetting.SEQUENCES, ""), ColorSequence.class) : ColorSequence.empty();
+            this.borderStyle = BorderStyle.values()[preferences.getInt(WallpaperSetting.BORDER_STYLE, 1)];
+            this.backgroundStyle = BackgroundStyle.values()[preferences.getInt(WallpaperSetting.BACKGROUND_STYLE, 0)];
+            this.restartOption = RestartOption.values()[preferences.getInt(WallpaperSetting.RESTART, 1)];
+            this.stydersStyle = StydersStyle.values()[preferences.getInt(WallpaperSetting.STYLE, 2)];
+            if (preferences.contains(WallpaperSetting.ACTIVATE_CONDITIONS)) {
+                Set<ToggleBorderOption> set = new HashSet<>();
+                for (String s : Objects.requireNonNull(preferences.getStringSet(WallpaperSetting.ACTIVATE_CONDITIONS, null))) {
+                    ToggleBorderOption toggleBorderOption = ToggleBorderOption.values()[Integer.parseInt(s)];
+                    set.add(toggleBorderOption);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                this.activateLiveBorderOnlyWhen = set;
+            } else {
+                this.activateLiveBorderOnlyWhen = new HashSet<>();
             }
 
-            instance = this;
-            return this;
+            this.appState = AppState.IN;
+            this.startingHours = preferences.getInt(WallpaperSetting.STARTING_HOURS, 7);
+            this.startingMinutes = preferences.getInt(WallpaperSetting.STARTING_MINUTES, 0);
+            this.endingHours = preferences.getInt(WallpaperSetting.ENDING_HOURS, 22);
+            this.endingMinutes = preferences.getInt(WallpaperSetting.ENDING_MINUTES, 0);
+            this.timerQuickOption = TimerQuickOptions.values()[preferences.getInt(WallpaperSetting.TIMER_QUICK_OPTION, 0)];
+            if (preferences.contains(WallpaperSetting.TIMER_DAYS)) {
+                Set<Day> set = new HashSet<>();
+                for (String s : Objects.requireNonNull(preferences.getStringSet(WallpaperSetting.TIMER_DAYS, null))) {
+                    Day toggleBorderOption = Day.valueOf(s);
+                    set.add(toggleBorderOption);
+                }
+
+                this.timerDays = set;
+            } else {
+                this.timerDays = new HashSet<>();
+                timerDays.addAll(Arrays.asList(Day.values()));
+            }
+
+            this.notchHeight = preferences.getInt(WallpaperSetting.NOTCH_HEIGHT, 80);
+            this.notchWidth = preferences.getInt(WallpaperSetting.NOTCH_WIDTH, 88);
+            this.notchBottomFull = preferences.getInt(WallpaperSetting.NOTCH_BOTTOM_FULL, 92);
+            this.notchTop = preferences.getInt(WallpaperSetting.NOTCH_TOP, 43);
+            this.notchBottom = preferences.getInt(WallpaperSetting.NOTCH_BOTTOM, 98);
         }
 
-        Gson gson = new GsonBuilder()
-                .addDeserializationExclusionStrategy(new ExclusionStrategy() {
-                    @Override
-                    public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-                        final Expose expose = fieldAttributes.getAnnotation(Expose.class);
-                        return expose != null && !expose.deserialize();
-                    }
-
-                    @Override
-                    public boolean shouldSkipClass(Class<?> aClass) {
-                        return false;
-                    }
-                })
-                .create();
-
-        File file = new File(dir, "SettingsStyders.json");
-        if (!file.exists()) {
-            return null;
-        }
-
-        WallpaperSettings objFromJson;
-        try {
-            objFromJson = gson.fromJson(new FileReader(file), WallpaperSettings.class);
-        } catch (Exception e) {
-            return null;
-        }
-
-        objFromJson.setBlack(getBitmapFromColor());
-        objFromJson.setAppState(AppState.OUT);
-        instance = objFromJson;
-        return objFromJson;
+        this.black = getBitmapFromColor();
+        instance = this;
+        return this;
     }
 
-    public static WallpaperSettings getInstance(File dir) {
+    public static WallpaperSettings getInstance(Context context) {
         if (instance == null) {
-            return new WallpaperSettings().init(dir);
+            return new WallpaperSettings().init(context);
         }
 
         return instance;
-    }
-
-    public void adjustState(Context context) {
-        if (getActivateLiveBorderOnlyWhen().size() > 0) {
-            if ((getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.CHARGER) && PowerUtils.isPlugged(context)) || (getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.HEADPHONES) && AudioUtils.isWiredToHeadphones(context))) {
-                setShowState(ShowState.STATIC);
-            } else {
-                setShowState(ShowState.HIDDEN);
-            }
-        } else {
-
-            setShowState(null);
-        }
     }
 
     private Bitmap getBitmapFromColor() {
@@ -214,50 +219,15 @@ public class WallpaperSettings {
         return bitmap;
     }
 
-
-    public void serialize(Context activity) throws IOException {
-        Gson gson = new GsonBuilder()
-                .addSerializationExclusionStrategy(new ExclusionStrategy() {
-                    @Override
-                    public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-                        final Expose expose = fieldAttributes.getAnnotation(Expose.class);
-                        return expose != null && !expose.serialize();
-                    }
-
-                    @Override
-                    public boolean shouldSkipClass(Class<?> aClass) {
-                        return false;
-                    }
-                })
-                .create();
-        String json = gson.toJson(this);
-
-        File file = new File(activity.getFilesDir(), "SettingsStyders.json");
-        if (file.exists()) {
-            if (!file.delete()) {
-                Log.d("[Styders]", "This file couldn't be removed!");
-            }
-        }
-
-        if (!file.createNewFile()) {
-            Log.d("[Styders]", "This file couldn't be created!");
-        }
-        FileOutputStream outputStream = new FileOutputStream(file);
-        OutputStreamWriter myOutWriter = new OutputStreamWriter(outputStream);
-        myOutWriter.append(json);
-        myOutWriter.close();
-        outputStream.close();
-    }
-
     public void enableNotch(boolean b) {
         this.notch = b;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_ENABLED);
     }
 
     public void setCustomBackground(Bitmap bitmap) {
         this.background = new SerializableBitmap(bitmap);
+        onSettingChanged(WallpaperSetting.BACKGROUND_STYLE);
     }
-
 
     public boolean isBorderEnabled() {
         return borderEnabled;
@@ -265,7 +235,7 @@ public class WallpaperSettings {
 
     public void setBorderEnabled(boolean borderEnabled) {
         this.borderEnabled = borderEnabled;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.BORDER_ENABLED);
     }
 
     public int getBorderSizeHomeScreen() {
@@ -274,7 +244,7 @@ public class WallpaperSettings {
 
     public void setBorderSizeHomeScreen(int borderSizeHomeScreen) {
         this.borderSizeHomeScreen = borderSizeHomeScreen;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.BORDER_HOME);
     }
 
     public int getBorderSpeed() {
@@ -283,7 +253,7 @@ public class WallpaperSettings {
 
     public void setBorderSpeed(int borderSpeed) {
         this.borderSpeed = borderSpeed;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.BORDER_SPEED);
     }
 
     public int getNotchBottomFull() {
@@ -292,7 +262,7 @@ public class WallpaperSettings {
 
     public void setNotchBottomFull(int notchBottomFull) {
         this.notchBottomFull = notchBottomFull;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_BOTTOM_FULL);
     }
 
     public int getNotchHeight() {
@@ -301,7 +271,7 @@ public class WallpaperSettings {
 
     public void setNotchHeight(int notchHeight) {
         this.notchHeight = notchHeight;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_HEIGHT);
     }
 
     public int getNotchBottom() {
@@ -310,7 +280,7 @@ public class WallpaperSettings {
 
     public void setNotchBottom(int notchBottom) {
         this.notchBottom = notchBottom;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_BOTTOM);
     }
 
     public int getNotchTop() {
@@ -319,7 +289,7 @@ public class WallpaperSettings {
 
     public void setNotchTop(int notchTop) {
         this.notchTop = notchTop;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_TOP);
     }
 
     public int getNotchWidth() {
@@ -328,7 +298,7 @@ public class WallpaperSettings {
 
     public void setNotchWidth(int notchWidth) {
         this.notchWidth = notchWidth;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.NOTCH_WIDTH);
     }
 
     public int getRadiusBottom() {
@@ -337,7 +307,7 @@ public class WallpaperSettings {
 
     public void setRadiusBottom(int radiusBottom) {
         this.radiusBottom = radiusBottom;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.RADIUS_BOTTOM);
     }
 
     public int getRadiusTop() {
@@ -346,7 +316,7 @@ public class WallpaperSettings {
 
     public void setRadiusTop(int radiusTop) {
         this.radiusTop = radiusTop;
-        onSettingChanged();
+        onSettingChanged(WallpaperSetting.RADIUS_TOP);
     }
 
     public Bitmap getBackground() {
@@ -372,8 +342,8 @@ public class WallpaperSettings {
         return background.getBitmap();
     }
 
-    private void onSettingChanged() {
-        WallPaperService.setUpdate(true);
+    private void onSettingChanged(String setting) {
+        WallPaperService.setUpdate(setting);
     }
 
     public void setAppState(AppState appState) {
@@ -384,14 +354,6 @@ public class WallpaperSettings {
         return notch;
     }
 
-    public boolean isNewImage() {
-        return newImage;
-    }
-
-    public void setNewImage(boolean newImage) {
-        this.newImage = newImage;
-    }
-
     public int getImageBorderBrightness() {
         return imageBorderBrightness;
     }
@@ -399,6 +361,7 @@ public class WallpaperSettings {
     public void setImageBorderBrightness(int imageBorderBrightness) {
         this.imageBorderBrightness = imageBorderBrightness;
         setNewColor(true);
+        onSettingChanged(WallpaperSetting.IMAGE_BRIGHTNESS);
     }
 
     public RestartOption getRestartOption() {
@@ -407,6 +370,7 @@ public class WallpaperSettings {
 
     public void setRestartOption(RestartOption restartOption) {
         this.restartOption = restartOption;
+        onSettingChanged(WallpaperSetting.RESTART);
     }
 
     public BackgroundStyle getBackgroundStyle() {
@@ -418,15 +382,13 @@ public class WallpaperSettings {
     }
 
     public void setBorderStyle(BorderStyle borderStyle) {
-        if (getBorderStyle() == BorderStyle.STATIC_LIGHTING) {
-            onSettingChanged();
-        }
-
         this.borderStyle = borderStyle;
+        onSettingChanged(WallpaperSetting.BORDER_STYLE);
     }
 
     public void setBackgroundStyle(BackgroundStyle backgroundStyle) {
         this.backgroundStyle = backgroundStyle;
+        onSettingChanged(BACKGROUND_STYLE);
     }
 
     public boolean isNewColor() {
@@ -449,6 +411,7 @@ public class WallpaperSettings {
         this.stydersStyle = stydersStyle;
         MainActivity mainActivity = MainActivity.getMainActivity();
         mainActivity.refreshUI();
+        onSettingChanged(WallpaperSetting.STYLE);
     }
 
     public Set<ToggleBorderOption> getActivateLiveBorderOnlyWhen() {
@@ -457,28 +420,12 @@ public class WallpaperSettings {
 
     public void addToggleOption(ToggleBorderOption options) {
         getActivateLiveBorderOnlyWhen().add(options);
-        if (getActivateLiveBorderOnlyWhen().size() > 0) {
-            setHiddenEnable();
-        }
+        onSettingChanged(ACTIVATE_CONDITIONS);
     }
 
     public void removeToggleOption(ToggleBorderOption options) {
         getActivateLiveBorderOnlyWhen().remove(options);
-        if (getActivateLiveBorderOnlyWhen().size() < 1) {
-            this.hiddenEnable = false;
-        }
-    }
-
-    public boolean isHiddenEnable() {
-        if (activateLiveBorderOnlyWhen.size() < 1) {
-            this.hiddenEnable = false;
-        }
-
-        return hiddenEnable;
-    }
-
-    private void setHiddenEnable() {
-        this.hiddenEnable = true;
+        onSettingChanged(ACTIVATE_CONDITIONS);
     }
 
     public boolean isTimerEnabled() {
@@ -487,6 +434,7 @@ public class WallpaperSettings {
 
     public void setTimerEnabled(boolean timerEnabled) {
         this.timerEnabled = timerEnabled;
+        onSettingChanged(TIMER_ENABLED);
     }
 
     public int getStartingHours() {
@@ -495,6 +443,7 @@ public class WallpaperSettings {
 
     public void setStartingHours(int startingHours) {
         this.startingHours = startingHours;
+        onSettingChanged(WallpaperSetting.STARTING_HOURS);
     }
 
     public int getStartingMinutes() {
@@ -503,6 +452,7 @@ public class WallpaperSettings {
 
     public void setStartingMinutes(int startingMinutes) {
         this.startingMinutes = startingMinutes;
+        onSettingChanged(WallpaperSetting.STARTING_MINUTES);
     }
 
     public int getEndingHours() {
@@ -511,6 +461,7 @@ public class WallpaperSettings {
 
     public void setEndingHours(int endingHours) {
         this.endingHours = endingHours;
+        onSettingChanged(WallpaperSetting.ENDING_HOURS);
     }
 
     public int getEndingMinutes() {
@@ -519,6 +470,7 @@ public class WallpaperSettings {
 
     public void setEndingMinutes(int endingMinutes) {
         this.endingMinutes = endingMinutes;
+        onSettingChanged(WallpaperSetting.ENDING_MINUTES);
     }
 
     public Set<Day> getTimerDays() {
@@ -531,16 +483,12 @@ public class WallpaperSettings {
 
     public void setTimerQuickOption(TimerQuickOptions timerQuickOption) {
         this.timerQuickOption = timerQuickOption;
+        onSettingChanged(WallpaperSetting.TIMER_QUICK_OPTION);
     }
 
-    public void schedulePendingIntent() {
-        checkTime(false);
-    }
-
-    public void checkTime(boolean b) {
+    public boolean isVisibleBecauseOfTimer(boolean b) {
         if (!timerEnabled) {
-            setTimerHidden(false);
-            return;
+            return true;
         }
 
         Calendar now = Calendar.getInstance();
@@ -556,40 +504,18 @@ public class WallpaperSettings {
         endAfter.set(Calendar.SECOND, 0);
 
         if (b && !getTimerDays().contains(Day.fromInt(now.get(Calendar.DAY_OF_WEEK)))) {
-            setTimerHidden(true);
-            return;
+            return false;
         }
 
         if (now.after(nowAfter)) {
             if (getEndingHours() >= getStartingHours()) {
-                if (now.before(endAfter)) {
-                    setTimerHidden(false);
-                } else {
-                    setTimerHidden(true);
-                }
+                return now.before(endAfter);
             } else {
-                setTimerHidden(false);
+                return true;
             }
         } else {
-            setTimerHidden(true);
+            return false;
         }
-    }
-
-    public boolean isTimerHidden() {
-        return timerHidden;
-    }
-
-    private void setTimerHidden(boolean timerHidden) {
-        this.timerHidden = timerHidden;
-    }
-
-
-    public void setShowState(ShowState showState) {
-        this.showState = showState;
-    }
-
-    public ShowState getShowState() {
-        return showState;
     }
 
     public void setBlack(Bitmap black) {
@@ -606,6 +532,7 @@ public class WallpaperSettings {
 
     public void setColorSequences(ColorSequence sequence) {
         this.sequence = sequence;
+        onSettingChanged(WallpaperSetting.SEQUENCES);
     }
 
     public void setLastBorder(BorderStyle lastBorder) {

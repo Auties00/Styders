@@ -8,11 +8,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.RadioButton;
@@ -42,7 +40,7 @@ import it.auties.styders.utils.AppUtils;
 import it.auties.styders.utils.BlockedViewPager;
 import it.auties.styders.utils.ClosableTabLayout;
 import it.auties.styders.utils.PageAdapter;
-import it.auties.styders.utils.Tutorial;
+import it.auties.styders.utils.PermissionCallback;
 
 public class MainActivity extends AppCompatActivity {
     private static MainActivity mainActivity;
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private LifecycleObserver observer;
     private WallpaperSettings settings;
     private boolean started;
+    private PermissionCallback permissionCallback;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainActivity = this;
 
-        this.settings = WallpaperSettings.getInstance(getFilesDir());
+        this.settings = WallpaperSettings.getInstance(getBaseContext());
 
         boolean firstRun = getIntent().getBooleanExtra("firstStart", false);
         if (firstRun) {
@@ -82,11 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
             AppUtils utils = new AppUtils(getApplicationContext());
             utils.setFirstLaunch();
-            try {
-                settings.serialize(this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
         if (savedInstanceState != null && savedInstanceState.containsKey("newTheme")) {
@@ -166,10 +160,8 @@ public class MainActivity extends AppCompatActivity {
         this.observer = (LifecycleEventObserver) (source, event) -> {
             if (event == Lifecycle.Event.ON_RESUME) {
                 settings.setAppState(AppState.IN);
-                settings.setNewImage(true);
             } else if (event == Lifecycle.Event.ON_PAUSE) {
                 settings.setAppState(AppState.OUT);
-                settings.setNewImage(true);
             }
         };
 
@@ -188,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Log.d("[FILE]", errors.getPath());
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(errors))) {
                 writer.write("[EX]Caught an exception on thread with id: " + thread.getId() + " and name: " + thread.getName());
@@ -199,8 +190,6 @@ public class MainActivity extends AppCompatActivity {
                 ex.printStackTrace();
             }
         });
-
-        new Handler().postDelayed(() -> Toast.makeText(this, "Path: " + errors.getPath(), Toast.LENGTH_LONG).show(), 1000L);
 
         this.started = true;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -227,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 newBack = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
             } catch (IOException e) {
-                Toast.makeText(this, "The image wasn't found!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getResources().getString(R.string.not_found), Toast.LENGTH_LONG).show();
                 goBack();
                 return;
             }
@@ -262,12 +251,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         getLifecycle().removeObserver(observer);
-
-        try {
-            settings.serialize(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static MainActivity getMainActivity() {
@@ -281,12 +264,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshUI() {
-        try {
-            settings.serialize(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         finish();
         overridePendingTransition(0, 0);
         Intent intent = new Intent(this, MainActivity.class);
@@ -309,6 +286,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         hideNavBar();
+        if(permissionCallback != null){
+            permissionCallback.onResult();
+            setPermissionCallback(null);
+        }
+
         super.onResume();
     }
 
@@ -326,5 +308,9 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY));
+    }
+
+    public void setPermissionCallback(PermissionCallback permissionCallback) {
+        this.permissionCallback = permissionCallback;
     }
 }

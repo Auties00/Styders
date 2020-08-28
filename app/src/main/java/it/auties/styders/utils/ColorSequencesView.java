@@ -1,9 +1,7 @@
 package it.auties.styders.utils;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +18,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.Objects;
+
 import it.auties.styders.R;
 import it.auties.styders.background.ColorList;
 import it.auties.styders.background.ColorSequence;
@@ -29,7 +29,7 @@ import it.auties.styders.main.MainActivity;
 
 public class ColorSequencesView extends BottomSheetDialogFragment {
     private final MainActivity mainActivity = MainActivity.getMainActivity();
-    private final  WallpaperSettings settings = WallpaperSettings.getInstance(mainActivity.getApplicationContext().getFilesDir());
+    private final  WallpaperSettings settings = mainActivity.getSettings();
     private final ColorSequence colorSequence = settings.getColorSequences().asCopy();
     private AppCompatButton button;
 
@@ -39,15 +39,13 @@ public class ColorSequencesView extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.saved_color_sequences, container, false);
         this.button = view.findViewById(R.id.addSequence);
 
-        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                BottomSheetDialog d = (BottomSheetDialog) dialog;
+        Objects.requireNonNull(getDialog()).setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
 
-                FrameLayout bottomSheet = d.findViewById(R.id.design_bottom_sheet);
+            FrameLayout bottomSheet = d.findViewById(R.id.design_bottom_sheet);
 
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
+            assert bottomSheet != null;
+            BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
         });
 
         update(view);
@@ -172,7 +170,7 @@ public class ColorSequencesView extends BottomSheetDialogFragment {
             }
 
             if (selected == null) {
-                Toast.makeText(mainActivity, "Please delete a sequence before adding a new one!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mainActivity, getResources().getString(R.string.maximum_num_of_sequences), Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -190,19 +188,32 @@ public class ColorSequencesView extends BottomSheetDialogFragment {
     private void update(View view) {
         for (int x = 0; x < 6; x++) {
             ColorList list = colorSequence.cardinal(x);
-            int[] toLoop = list.getColors();
-            for (int y = 0; y < 6; y++) {
-                if (!list.isFilled()) {
-                    SquareView cardView = view.findViewWithTag(String.valueOf(((x) * 6) + (y + 1)));
-                    cardView.setVisibility(View.INVISIBLE);
-                    cardView.setFocusable(false);
-                } else {
-                    SquareView cardView = view.findViewWithTag(String.valueOf((x * 6) + (y + 1)));
-                    cardView.setCardBackgroundColor(toLoop[y]);
-                    cardView.setFocusable(false);
+            if (x > 1 && list.isFilled()) {
+                ColorList previous = colorSequence.cardinal(x - 1);
+                if (!previous.isFilled()) {
+                    previous.setFilled(true);
+                    previous.setColors(list.getColors());
+                    previous.setUpdate(false);
+                    list.setFilled(false);
+                    list.setColors(new int[]{});
+                    list.setUpdate(false);
                 }
             }
+        }
 
+        for (int x = 0; x < 6; x++) {
+            ColorList list = colorSequence.cardinal(x);
+            int[] toLoop = list.getColors();
+            for (int y = 0; y < 6; y++) {
+                SquareView cardView = view.findViewWithTag(String.valueOf(((x) * 6) + (y + 1)));
+                if (!list.isFilled()) {
+                    cardView.setVisibility(View.INVISIBLE);
+                } else {
+                    cardView.setCardBackgroundColor(toLoop[y]);
+                }
+
+                cardView.setFocusable(false);
+            }
         }
     }
 
@@ -231,6 +242,7 @@ public class ColorSequencesView extends BottomSheetDialogFragment {
         int[] forStart = list.getColors().clone();
 
         colorSequence.getSequenceInUse().setColors(forStart);
+        colorSequence.getSequenceInUse().setUpdate(false);
 
         update(getView());
         return true;
@@ -249,7 +261,7 @@ public class ColorSequencesView extends BottomSheetDialogFragment {
         popup.getMenuInflater().inflate(R.menu.sequence_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
             if (colorSequence.getFilled() <= 1) {
-                Toast.makeText(mainActivity, "You can't delete a sequence when you only have 1 left!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mainActivity, getResources().getString(R.string.minimum_num_of_sequences), Toast.LENGTH_LONG).show();
                 return true;
             }
 

@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Build;
 
@@ -21,7 +18,7 @@ import it.auties.styders.R;
 import it.auties.styders.main.MainActivity;
 
 public class PowerUtils {
-    private static final List<Intent> POWERMANAGER_INTENTS = Arrays.asList(
+    private static final List<Intent> POWER_MANAGER_INTENTS = Arrays.asList(
             new Intent().setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity")),
             new Intent().setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity")),
             new Intent().setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity")),
@@ -44,14 +41,14 @@ public class PowerUtils {
 
     public void startPowerSaverIntentIfAny(Context context) {
         boolean hasIntent = false;
-        for (Intent intent : POWERMANAGER_INTENTS) {
-            if (!isCallable(context, intent)) {
+        for (Intent intent : POWER_MANAGER_INTENTS) {
+            if (!IntentUtils.isCallable(context, intent)) {
                 continue;
             }
 
 
             hasIntent = true;
-            intentToStart = POWERMANAGER_INTENTS.indexOf(intent);
+            intentToStart = POWER_MANAGER_INTENTS.indexOf(intent);
             break;
         }
 
@@ -68,24 +65,11 @@ public class PowerUtils {
                         .setMessage(description)
                         .setPositiveButton(context.getString(R.string.settings_msg), view -> {
                             preferences.edit().putBoolean("accepted", true).apply();
-                            context.startActivity(POWERMANAGER_INTENTS.get(intentToStart));
+                            context.startActivity(POWER_MANAGER_INTENTS.get(intentToStart));
                         })
                         .setCancelable(true)
                         .show();
             }
-        }
-    }
-
-    private static boolean isCallable(Context context, Intent intent) {
-        try {
-            if (intent == null || context == null) {
-                return false;
-            } else {
-                List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-                return list.size() > 0;
-            }
-        } catch (Exception ignored) {
-            return false;
         }
     }
 

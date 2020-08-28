@@ -12,8 +12,8 @@ import it.auties.styders.fragment.TimerFragment;
 import it.auties.styders.main.MainActivity;
 
 public class PageAdapter extends FragmentPagerAdapter {
-    private MainActivity mainActivity;
-    private int numOfTabs;
+    private final MainActivity mainActivity;
+    private final int numOfTabs;
 
     public PageAdapter(MainActivity mainActivity, FragmentManager fm, int numOfTabs) {
         super(fm);

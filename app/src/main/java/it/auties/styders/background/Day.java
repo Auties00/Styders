@@ -1,5 +1,8 @@
 package it.auties.styders.background;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Day {
     MONDAY,
     TUESDAY,
@@ -27,5 +30,14 @@ public enum Day {
             case 7:
                 return SATURDAY;
         }
+    }
+
+    public static List<String> valuesAsString(){
+        List<String> days = new ArrayList<>();
+        for(Day day : values()){
+            days.add(day.name());
+        }
+
+        return days;
     }
 }

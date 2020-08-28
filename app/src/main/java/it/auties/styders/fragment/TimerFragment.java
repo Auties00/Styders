@@ -141,7 +141,6 @@ public class TimerFragment extends Fragment {
                 fragment.findViewById(R.id.timerSettingsThree).setVisibility(View.VISIBLE);
                 settings.setTimerEnabled(true);
                 checkDays(fragment);
-                settings.schedulePendingIntent();
             }
         });
     }
@@ -150,11 +149,9 @@ public class TimerFragment extends Fragment {
         switch (settings.getTimerQuickOption()) {
             case NIGHT:
                 setChecked(fragment, R.id.timerOptionOne);
-                settings.schedulePendingIntent();
                 break;
             case DAY:
                 setChecked(fragment, R.id.timerOptionTwo);
-                settings.schedulePendingIntent();
                 break;
             case CUSTOM:
                 setChecked(fragment, R.id.timerOptionInvisible);
@@ -181,7 +178,6 @@ public class TimerFragment extends Fragment {
                         settings.setEndingHours(22);
                         settings.setEndingMinutes(0);
                         settings.setTimerQuickOption(TimerQuickOptions.NIGHT);
-                        settings.schedulePendingIntent();
                         bindText(fragment);
                         break;
                     case R.id.timerOptionTwo:
@@ -190,7 +186,6 @@ public class TimerFragment extends Fragment {
                         settings.setEndingHours(7);
                         settings.setEndingMinutes(0);
                         settings.setTimerQuickOption(TimerQuickOptions.DAY);
-                        settings.schedulePendingIntent();
                         bindText(fragment);
                         break;
                 }

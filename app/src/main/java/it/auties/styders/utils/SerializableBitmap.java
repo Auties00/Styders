@@ -8,7 +8,7 @@ public class SerializableBitmap {
     @Expose(serialize = false, deserialize = false)
     private Bitmap bitmap;
     @Expose
-    private String asString;
+    private final String asString;
 
     public SerializableBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
