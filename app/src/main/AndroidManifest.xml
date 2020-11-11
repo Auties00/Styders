@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
           package="it.auties.styders">
     <uses-feature android:required="true" android:name="android.software.live_wallpaper"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -73,7 +75,7 @@
             <meta-data android:name="android.service.wallpaper" android:resource="@xml/styders_paper"/>
         </service>
 
-        <receiver android:name="it.auties.styders.main.BootReceiver" android:enabled="true" android:exported="false">
+        <receiver android:name="it.auties.styders.service.BootReceiver" android:enabled="true" android:exported="false">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.REBOOT"/>

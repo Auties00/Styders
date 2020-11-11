@@ -6,7 +6,6 @@
     <string name="borders_brightness">Borders Brightness:</string>
     <string name="borders_color">Borders color:</string>
     <string name="thickness_home">Borders thickness:</string>
-    <string name="borders_lock">Borders thickness on lockscreen:</string>
     <string name="top_radius">Top corners radius:</string>
     <string name="bottom_corners_radius">Bottom corners radius:</string>
     <string name="home">Home</string>
@@ -79,12 +78,6 @@
     <string name="listen_description">Please allow Styders to listen for notifications in order for this setting to
         work
     </string>
-    <string name="resize">Resize Image</string>
-    <string name="resize_desc">The image size doesn\'t match your screen size: please choose if you want to resize it
-        manually or resize it automatically!
-    </string>
-    <string name="resize_manually">Manually</string>
-    <string name="resize_auto">Automatically</string>
     <string name="exit">Exit</string>
     <string name="other_opt">Other options:</string>
     <string name="unsupported">Unsupported Phone</string>
@@ -93,10 +86,6 @@
     <string name="unsupported_desc">Your phone doesn\'t support live wallpapers: please contact your device manufacturer
         for more info!
     </string>
-    <string name="tutorial_one">Let\'s start, choose the \n borders thickness!</string>
-    <string name="tutorial_two">Now adapt the corners \n to your phone!</string>
-    <string name="tutorial_three">From here you can adapt \n the border to the notch!</string>
-    <string name="tutorial_four">Activate and adapt the \n notch to your device!</string>
     <string name="unsupported_notification_desc">Your phone doesn\'t support notification listeners: please contact your device manufacturer
         for more info!
     </string>

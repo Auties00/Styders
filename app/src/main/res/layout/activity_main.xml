@@ -7,12 +7,10 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="8dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:id="@+id/rootView">
+                android:paddingEnd="5dp">
 
     <RelativeLayout
-            android:id="@+id/viewPagerWrapper"
-            android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/space_one"
             android:layout_marginTop="10dp">

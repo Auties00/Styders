@@ -486,24 +486,27 @@ public class WallpaperSettings {
         onSettingChanged(WallpaperSetting.TIMER_QUICK_OPTION);
     }
 
-    public boolean isVisibleBecauseOfTimer(boolean b) {
+    public boolean isVisibleBecauseOfTimer() {
         if (!timerEnabled) {
             return true;
         }
 
+        //3
         Calendar now = Calendar.getInstance();
 
+        //7
         Calendar nowAfter = Calendar.getInstance();
         nowAfter.set(Calendar.HOUR_OF_DAY, getStartingHours());
         nowAfter.set(Calendar.MINUTE, getStartingMinutes());
         nowAfter.set(Calendar.SECOND, 0);
 
+        //4
         Calendar endAfter = Calendar.getInstance();
         endAfter.set(Calendar.HOUR_OF_DAY, getEndingHours());
         endAfter.set(Calendar.MINUTE, getEndingMinutes());
         endAfter.set(Calendar.SECOND, 0);
 
-        if (b && !getTimerDays().contains(Day.fromInt(now.get(Calendar.DAY_OF_WEEK)))) {
+        if (!getTimerDays().contains(Day.fromInt(now.get(Calendar.DAY_OF_WEEK)))) {
             return false;
         }
 
@@ -517,6 +520,7 @@ public class WallpaperSettings {
             return false;
         }
     }
+
 
     public void setBlack(Bitmap black) {
         this.black = black;

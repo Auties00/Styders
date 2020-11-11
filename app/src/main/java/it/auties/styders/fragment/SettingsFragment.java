@@ -140,96 +140,75 @@ public class SettingsFragment extends Fragment {
     private void setListeners(View fragment) {
         RadioGroup radioGroup = fragment.findViewById(R.id.backgroundStyleGroup);
         radioGroup.setOnCheckedChangeListener((rg, i) -> {
-            switch (i) {
-                case R.id.backgroundStyleOptionOne:
-                    settings.setBackgroundStyle(BackgroundStyle.BLACK);
-                    settings.setCustomBackground(getBitmapFromColor(Color.BLACK));
-                    break;
-                case R.id.backgroundStyleOptionTwo:
-                    settings.setBackgroundStyle(BackgroundStyle.GRAY);
-                    settings.setCustomBackground(getBitmapFromColor(getResources().getColor(R.color.gray_background)));
-                    break;
-                case R.id.backgroundStyleOptionThree:
-                    settings.setBackgroundStyle(BackgroundStyle.WHITE);
-                    settings.setCustomBackground(getBitmapFromColor(Color.WHITE));
-                    break;
-                case R.id.backgroundStyleOptionFour:
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    intent.putExtra("return-data", true);
-                    mainActivity.startActivityForResult(Intent.createChooser(intent, "Choose a background..."), 8909);
-                    break;
+            if (i == R.id.backgroundStyleOptionOne) {
+                settings.setBackgroundStyle(BackgroundStyle.BLACK);
+                settings.setCustomBackground(getBitmapFromColor(Color.BLACK));
+            } else if (i == R.id.backgroundStyleOptionTwo) {
+                settings.setBackgroundStyle(BackgroundStyle.GRAY);
+                settings.setCustomBackground(getBitmapFromColor(getResources().getColor(R.color.gray_background)));
+            } else if (i == R.id.backgroundStyleOptionThree) {
+                settings.setBackgroundStyle(BackgroundStyle.WHITE);
+                settings.setCustomBackground(getBitmapFromColor(Color.WHITE));
+            } else if (i == R.id.backgroundStyleOptionFour) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+                intent.putExtra("return-data", true);
+                mainActivity.startActivityForResult(Intent.createChooser(intent, "Choose a background..."), 8909);
             }
         });
 
         RadioGroup radioGroup1 = fragment.findViewById(R.id.borderStyleGroup);
         radioGroup1.setOnCheckedChangeListener((rg, i) -> {
             settings.setNewColor(true);
-            switch (i) {
-                case R.id.borderStyleOptionOne:
-                    settings.setLastBorder(settings.getBorderStyle());
-                    settings.setBorderStyle(BorderStyle.STATIC_LIGHTING);
-                    break;
-                case R.id.borderStyleOptionTwo:
-                    settings.setBorderStyle(BorderStyle.CONTINUOUS_LIGHTING);
-                    break;
-                case R.id.borderStyleOptionThree:
-                    settings.setBorderStyle(BorderStyle.BREATH_LIGHTING);
-                    break;
-                case R.id.borderStyleOptionFour:
-                    settings.setBorderStyle(BorderStyle.DISAPPEARANCE_LIGHTING);
-                    break;
-                case R.id.borderStyleOptionFive:
-                    settings.setBorderStyle(BorderStyle.CIRCUIT_LIGHTING);
-                    break;
+            if (i == R.id.borderStyleOptionOne) {
+                settings.setLastBorder(settings.getBorderStyle());
+                settings.setBorderStyle(BorderStyle.STATIC_LIGHTING);
+            } else if (i == R.id.borderStyleOptionTwo) {
+                settings.setBorderStyle(BorderStyle.CONTINUOUS_LIGHTING);
+            } else if (i == R.id.borderStyleOptionThree) {
+                settings.setBorderStyle(BorderStyle.BREATH_LIGHTING);
+            } else if (i == R.id.borderStyleOptionFour) {
+                settings.setBorderStyle(BorderStyle.DISAPPEARANCE_LIGHTING);
+            } else if (i == R.id.borderStyleOptionFive) {
+                settings.setBorderStyle(BorderStyle.CIRCUIT_LIGHTING);
             }
         });
 
         RadioGroup radioGroup2 = fragment.findViewById(R.id.stydersStyleGroup);
         radioGroup2.setOnCheckedChangeListener((radioGroup3, i) -> {
-            switch (i) {
-                case R.id.stydersStyleOptionOne:
-                    settings.setStydersStyle(StydersStyle.DARK);
-                    break;
-                case R.id.stydersStyleOptionTwo:
-                    settings.setStydersStyle(StydersStyle.DARK_GRAY);
-                    break;
-                case R.id.stydersStyleOptionThree:
-                    settings.setStydersStyle(StydersStyle.WHITE);
-                    break;
+            if (i == R.id.stydersStyleOptionOne) {
+                settings.setStydersStyle(StydersStyle.DARK);
+            } else if (i == R.id.stydersStyleOptionTwo) {
+                settings.setStydersStyle(StydersStyle.DARK_GRAY);
+            } else if (i == R.id.stydersStyleOptionThree) {
+                settings.setStydersStyle(StydersStyle.WHITE);
             }
         });
 
         RadioGroup radioGroup3 = fragment.findViewById(R.id.restartStyleGroup);
         radioGroup3.setOnCheckedChangeListener((radioGroup4, i) -> {
-            switch (i) {
-                case R.id.restartStyleOptionOne:
-                    settings.setRestartOption(RestartOption.RESTART);
-                    new PowerUtils().startPowerSaverIntentIfAny(mainActivity);
-                    break;
-                case R.id.restartStyleOptionTwo:
-                    settings.setRestartOption(RestartOption.NONE);
-                    break;
+            if (i == R.id.restartStyleOptionOne) {
+                settings.setRestartOption(RestartOption.RESTART);
+                new PowerUtils().startPowerSaverIntentIfAny(mainActivity);
+            } else if (i == R.id.restartStyleOptionTwo) {
+                settings.setRestartOption(RestartOption.NONE);
             }
         });
 
         RadioGroup radioGroup4 = fragment.findViewById(R.id.otherOptionsGroup);
         radioGroup4.setOnCheckedChangeListener((t, i) -> {
-            switch (i) {
-                case R.id.resetBorderButton:
-                    setChecked(fragment, R.id.invLastOpt);
+            if (i == R.id.resetBorderButton) {
+                setChecked(fragment, R.id.invLastOpt);
 
-                    Intent intent = new Intent(mainActivity, WallpaperSetActivity.class);
-                    mainActivity.startActivity(intent);
-                    break;
-                case R.id.showErrorButton:
-                    setChecked(fragment, R.id.invLastOpt);
+                Intent intent = new Intent(mainActivity, WallpaperSetActivity.class);
+                mainActivity.startActivity(intent);
+            } else if (i == R.id.showErrorButton) {
+                setChecked(fragment, R.id.invLastOpt);
 
-                    Intent intent1 = new Intent(mainActivity, LockscreenMessageActivity.class);
-                    intent1.putExtra("repeat", true);
-                    intent1.putExtra("stydersStyle", mainActivity.getSettings().getStydersStyle().name());
-                    mainActivity.startActivity(intent1);
-                    break;
+                Intent intent1 = new Intent(mainActivity, LockscreenMessageActivity.class);
+                intent1.putExtra("repeat", true);
+                intent1.putExtra("stydersStyle", mainActivity.getSettings().getStydersStyle().name());
+                mainActivity.startActivity(intent1);
             }
         });
 

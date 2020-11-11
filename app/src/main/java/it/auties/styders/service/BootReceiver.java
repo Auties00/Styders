@@ -1,4 +1,4 @@
-package it.auties.styders.main;
+package it.auties.styders.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

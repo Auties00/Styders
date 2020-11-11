@@ -1,5 +1,7 @@
 package it.auties.styders.utils;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.media.AudioManager;
 
@@ -10,6 +12,12 @@ public class AudioUtils {
             return false;
         }
 
-        return audioManager.isWiredHeadsetOn();
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if(bluetoothAdapter == null){
+            return audioManager.isWiredHeadsetOn();
+        }
+
+
+        return audioManager.isWiredHeadsetOn() || bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET) == BluetoothProfile.STATE_CONNECTED;
     }
 }

@@ -38,49 +38,45 @@ public class SelectThemeActivity extends AppCompatActivity {
         RadioButton third = findViewById(R.id.startStyleOptionsThree);
 
         group.setOnCheckedChangeListener((gr, checkedId) -> {
-            switch (checkedId) {
-                case R.id.startStyleOptionsOne:
-                    getWindow().setStatusBarColor(Color.WHITE);
-                    getWindow().setNavigationBarColor(Color.WHITE);
-                    bg.setBackgroundColor(getResources().getColor(R.color.white));
-                    button.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
-                    button.setTextColor(Color.WHITE);
-                    first.setTextColor(Color.BLACK);
-                    second.setTextColor(Color.BLACK);
-                    third.setTextColor(Color.BLACK);
-                    first.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
-                    second.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
-                    third.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
-                    this.stydersStyle = StydersStyle.WHITE;
-                    break;
-                case R.id.startStyleOptionsTwo:
-                    getWindow().setStatusBarColor(Color.BLACK);
-                    getWindow().setNavigationBarColor(Color.BLACK);
-                    bg.setBackgroundColor(getResources().getColor(R.color.black));
-                    button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-                    button.setTextColor(Color.BLACK);
-                    first.setTextColor(Color.WHITE);
-                    second.setTextColor(Color.WHITE);
-                    third.setTextColor(Color.WHITE);
-                    first.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    second.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    third.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    this.stydersStyle = StydersStyle.DARK;
-                    break;
-                case R.id.startStyleOptionsThree:
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.gray_background));
-                    getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_background));
-                    bg.setBackgroundColor(getResources().getColor(R.color.gray_background));
-                    button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-                    button.setTextColor(Color.BLACK);
-                    first.setTextColor(Color.WHITE);
-                    second.setTextColor(Color.WHITE);
-                    third.setTextColor(Color.WHITE);
-                    first.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    second.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    third.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
-                    this.stydersStyle = StydersStyle.DARK_GRAY;
-                    break;
+            if (checkedId == R.id.startStyleOptionsOne) {
+                getWindow().setStatusBarColor(Color.WHITE);
+                getWindow().setNavigationBarColor(Color.WHITE);
+                bg.setBackgroundColor(getResources().getColor(R.color.white));
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+                button.setTextColor(Color.WHITE);
+                first.setTextColor(Color.BLACK);
+                second.setTextColor(Color.BLACK);
+                third.setTextColor(Color.BLACK);
+                first.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
+                second.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
+                third.setButtonTintList(ColorStateList.valueOf(Color.BLACK));
+                this.stydersStyle = StydersStyle.WHITE;
+            } else if (checkedId == R.id.startStyleOptionsTwo) {
+                getWindow().setStatusBarColor(Color.BLACK);
+                getWindow().setNavigationBarColor(Color.BLACK);
+                bg.setBackgroundColor(getResources().getColor(R.color.black));
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                button.setTextColor(Color.BLACK);
+                first.setTextColor(Color.WHITE);
+                second.setTextColor(Color.WHITE);
+                third.setTextColor(Color.WHITE);
+                first.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                second.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                third.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                this.stydersStyle = StydersStyle.DARK;
+            } else if (checkedId == R.id.startStyleOptionsThree) {
+                getWindow().setStatusBarColor(getResources().getColor(R.color.gray_background));
+                getWindow().setNavigationBarColor(getResources().getColor(R.color.gray_background));
+                bg.setBackgroundColor(getResources().getColor(R.color.gray_background));
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                button.setTextColor(Color.BLACK);
+                first.setTextColor(Color.WHITE);
+                second.setTextColor(Color.WHITE);
+                third.setTextColor(Color.WHITE);
+                first.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                second.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                third.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+                this.stydersStyle = StydersStyle.DARK_GRAY;
             }
         });
 

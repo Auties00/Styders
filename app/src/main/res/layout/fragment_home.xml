@@ -6,12 +6,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusableInTouchMode="false"
-            android:id="@+id/homeRoot"
-            android:background="@android:color/transparent">
+    android:background="@android:color/transparent">
 
     <RelativeLayout
-            android:id="@+id/relativeHome"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="70dp">
@@ -275,32 +273,6 @@
             </LinearLayout>
         </it.auties.styders.utils.InterceptCardView>
 
-        <LinearLayout
-                android:id="@+id/tutorialOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/appSettingsFour"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:visibility="gone">
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="?attr/text_color"
-                    app:srcCompat="@drawable/arrow"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/explainOne"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/manrope_bold"
-                    android:textColor="?attr/text_color"
-                    android:layout_marginTop="20dp"/>
-        </LinearLayout>
-
-
         <it.auties.styders.utils.InterceptCardView
                 android:id="@+id/appSettingsFour"
                 android:layout_width="match_parent"
@@ -316,42 +288,31 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginBottom="15dp">
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="20dp"
-                            android:paddingTop="15sp"
-                            android:paddingEnd="30dp"
-                            android:text="@string/thickness_home"
-                            android:textColor="?attr/text_color"
-                            android:textSize="15dp"
-                            tools:ignore="SpUsage"/>
-                    <SeekBar
-                            android:id="@+id/seekBarFive"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxHeight="4dp"
-                            android:minHeight="4dp"
-                            android:paddingTop="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="30dp"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/seek_progress_bar"
-                            android:shape="oval"
-                            android:splitTrack="false"
-                            android:thumb="@drawable/seek_thumb"
-                            android:thumbOffset="10dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="15sp"
+                    android:paddingEnd="30dp"
+                    android:text="@string/thickness_home"
+                    android:textColor="?attr/text_color"
+                    android:textSize="15dp"
+                    tools:ignore="SpUsage"/>
+                <SeekBar
+                    android:id="@+id/seekBarFive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="4dp"
+                    android:minHeight="4dp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="30dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/seek_progress_bar"
+                    android:shape="oval"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/seek_thumb"
+                    android:thumbOffset="10dp"/>
 
             </LinearLayout>
         </it.auties.styders.utils.InterceptCardView>
@@ -439,29 +400,5 @@
                 </LinearLayout>
             </LinearLayout>
         </it.auties.styders.utils.InterceptCardView>
-
-        <LinearLayout
-                android:id="@+id/tutorialTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/appSettingsFive"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:visibility="gone">
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="?attr/text_color"
-                    app:srcCompat="@drawable/arrow"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/explainTwo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/manrope_bold"
-                    android:textColor="?attr/text_color"
-                    android:layout_marginTop="20dp"/>
-        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

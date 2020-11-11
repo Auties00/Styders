@@ -3,6 +3,7 @@ package it.auties.styders.service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -16,6 +17,8 @@ import it.auties.styders.background.WallpaperSetting;
 
 public class NotificationService extends NotificationListenerService {
     private static boolean isNotificationActive = false;
+    private final Handler handler = new Handler();
+
     @Override
     public IBinder onBind(Intent intent) {
         return super.onBind(intent);
@@ -29,6 +32,10 @@ public class NotificationService extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         super.onNotificationPosted(sbn);
+        if(sbn.isOngoing()){
+            return;
+        }
+
         SharedPreferences preferences = getBaseContext().getSharedPreferences("Styders", Context.MODE_PRIVATE);
         if (!getOptions(preferences).contains(ToggleBorderOption.NOTIFICATION)) {
             return;
@@ -36,6 +43,9 @@ public class NotificationService extends NotificationListenerService {
 
         if (!isNotificationActive) {
             isNotificationActive = true;
+            handler.postDelayed(() -> {
+                if(isNotificationActive) isNotificationActive = false;
+            }, 6000L);
         }
     }
 

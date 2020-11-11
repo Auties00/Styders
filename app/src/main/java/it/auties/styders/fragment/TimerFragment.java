@@ -171,23 +171,20 @@ public class TimerFragment extends Fragment {
         RadioGroup group = fragment.findViewById(R.id.timerOptionGroup);
         group.setOnCheckedChangeListener((radioGroup, i) -> {
             if (i != R.id.timerOptionInvisible) {
-                switch (i) {
-                    case R.id.timerOptionOne:
-                        settings.setStartingHours(7);
-                        settings.setStartingMinutes(0);
-                        settings.setEndingHours(22);
-                        settings.setEndingMinutes(0);
-                        settings.setTimerQuickOption(TimerQuickOptions.NIGHT);
-                        bindText(fragment);
-                        break;
-                    case R.id.timerOptionTwo:
-                        settings.setStartingHours(22);
-                        settings.setStartingMinutes(0);
-                        settings.setEndingHours(7);
-                        settings.setEndingMinutes(0);
-                        settings.setTimerQuickOption(TimerQuickOptions.DAY);
-                        bindText(fragment);
-                        break;
+                if (i == R.id.timerOptionOne) {
+                    settings.setStartingHours(7);
+                    settings.setStartingMinutes(0);
+                    settings.setEndingHours(22);
+                    settings.setEndingMinutes(0);
+                    settings.setTimerQuickOption(TimerQuickOptions.NIGHT);
+                    bindText(fragment);
+                } else if (i == R.id.timerOptionTwo) {
+                    settings.setStartingHours(22);
+                    settings.setStartingMinutes(0);
+                    settings.setEndingHours(7);
+                    settings.setEndingMinutes(0);
+                    settings.setTimerQuickOption(TimerQuickOptions.DAY);
+                    bindText(fragment);
                 }
             }
         });

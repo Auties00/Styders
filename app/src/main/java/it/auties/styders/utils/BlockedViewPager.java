@@ -1,5 +1,6 @@
 package it.auties.styders.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -16,6 +17,7 @@ public class BlockedViewPager extends ViewPager {
         this.enabled = true;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (this.enabled) {
@@ -32,15 +34,6 @@ public class BlockedViewPager extends ViewPager {
         }
 
         return false;
-    }
-
-    @ColorInt
-    private int adjustAlpha(@ColorInt int color, float factor) {
-        int alpha = Math.round(Color.alpha(color) * factor);
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-        return Color.argb(alpha, red, green, blue);
     }
 
     public void setPagingEnabled(boolean enabled) {

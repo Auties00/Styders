@@ -91,7 +91,6 @@ public class WallPaperService extends WallpaperService {
         private Path invPath;
         private Paint helpFillPaint;
         private Paint blackFillPaint;
-        private long ms;
         private Matrix standardMatrix;
         private WallpaperSettings wallpaperSettings;
         private float interpolation;
@@ -118,7 +117,6 @@ public class WallPaperService extends WallpaperService {
             this.disappearancePhase = 0;
             this.last = System.currentTimeMillis();
             this.next = false;
-            this.ms = 0;
             this.wallpaperSettings = WallpaperSettings.getInstance(getBaseContext());
             this.shouldRun = true;
             this.executor = Executors.newScheduledThreadPool(1);
@@ -233,35 +231,6 @@ public class WallPaperService extends WallpaperService {
         }
 
 
-        private void notification() {
-            int[] colorArray = wallpaperSettings.getColorSequences().getSequenceInUse().getColors();
-            if (index > colorArray.length - 1) {
-                index = 0;
-            }
-
-            int[] iArr = new int[2];
-            iArr[0] = colorArray[index];
-            iArr[1] = colorArray[index];
-
-            this.grad = new SweepGradient(((float) this.surfaceWidth) / 2.0f, ((float) this.surfaceHeight) / 2.0f, iArr, null);
-
-            this.borderPaint.setShader(this.grad);
-
-            if (ms < 500) {
-                if (ms < 250) {
-                    borderPaint.setAlpha((int) ms * 255 / 500);
-                } else {
-                    borderPaint.setAlpha((int) (255 - (ms * 255 / 500)));
-                }
-
-                ms++;
-            } else {
-                ms = 0;
-                index++;
-            }
-        }
-
-
         private boolean canPost() {
             if (!visible) {
                 return false;
@@ -285,10 +254,10 @@ public class WallPaperService extends WallpaperService {
 
             long showTime = 0;
             int nanoTime = (int) ((System.nanoTime() - (showTime + 300000000)) / 1000000);
-            if (wallpaperSettings.isBorderEnabled() && wallpaperSettings.isVisibleBecauseOfTimer(true) && wallpaperSettings.getActivateLiveBorderOnlyWhen().size() == 0) {
+            if (wallpaperSettings.isBorderEnabled() && wallpaperSettings.isVisibleBecauseOfTimer() && wallpaperSettings.getActivateLiveBorderOnlyWhen().size() == 0) {
                 interpolation = new OvershootInterpolator().getInterpolation(((float) Math.max(Math.min(nanoTime, 1000), 0)) / 1000.0f) * (lerp((float) wallpaperSettings.getBorderSizeHomeScreen() < 10 ? 10 : wallpaperSettings.getBorderSizeHomeScreen() / 5F, (float) wallpaperSettings.getBorderSizeHomeScreen() < 10 ? 10 : wallpaperSettings.getBorderSizeHomeScreen() / 2F, unlockProgress()));
             } else {
-                if ((wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.HEADPHONES) && AudioUtils.isWiredToHeadphones(getBaseContext()) || (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.CHARGER) && PowerUtils.isPlugged(getBaseContext())) || (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.NOTIFICATION) && NotificationService.IsNotificationActive())) && wallpaperSettings.isVisibleBecauseOfTimer(true)) {
+                if ((wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.HEADPHONES) && AudioUtils.isWiredToHeadphones(getBaseContext()) || (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.CHARGER) && PowerUtils.isPlugged(getBaseContext())) || (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.NOTIFICATION) && NotificationService.IsNotificationActive())) && wallpaperSettings.isVisibleBecauseOfTimer()) {
                     interpolation = new OvershootInterpolator().getInterpolation(((float) Math.max(Math.min(nanoTime, 1000), 0)) / 1000.0f) * (lerp((float) wallpaperSettings.getBorderSizeHomeScreen() < 10 ? 10 : wallpaperSettings.getBorderSizeHomeScreen() / 5F, (float) wallpaperSettings.getBorderSizeHomeScreen() < 10 ? 10 : wallpaperSettings.getBorderSizeHomeScreen() / 2F, unlockProgress()));
                 }else {
                     interpolation = 0;
@@ -323,9 +292,7 @@ public class WallPaperService extends WallpaperService {
 
             blackFillPaint.setColor(ColorUtils.getDominantColor(wallpaperSettings.getBackground()));
             if(interpolation > 0.001F) {
-                if (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.NOTIFICATION) && NotificationService.IsNotificationActive()) {
-                    notification();
-                } else if (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.CHARGER) || wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.HEADPHONES)) {
+                if (wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.CHARGER) || wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.HEADPHONES) || wallpaperSettings.getActivateLiveBorderOnlyWhen().contains(ToggleBorderOption.NOTIFICATION)) {
                     switch (style) {
                         case CONTINUOUS_LIGHTING:
                             standardDraw(lockHardwareCanvas, nanoTime, false);
@@ -404,7 +371,7 @@ public class WallPaperService extends WallpaperService {
         }
 
         //IMPORTANT
-        //This code was lost because Windows corrupted by ssd before I pushed my code to git
+        //This code was lost because Windows corrupted my ssd before I could push my code to git
         //Because of this it's decompiled
         //TODO: Rewrite the code
         private void disappearanceLighting(Canvas canvas, boolean z) {
@@ -612,7 +579,7 @@ public class WallPaperService extends WallpaperService {
         }
 
         //IMPORTANT
-        //This code was lost because Windows corrupted by ssd before I pushed my code to git
+        //This code was lost because Windows corrupted my ssd before I could push my code to git
         //Because of this it's decompiled
         //TODO: Refactor the code
         private Path generatePath() {
