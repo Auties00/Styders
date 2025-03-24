@@ -15,3 +15,7 @@ Styders - Stylization Borders - live Wallpaper on Android. With this application
 ### Trailer (Video)
 
 [![Watch the video](https://img.youtube.com/vi/hSyf3eV8cic/hqdefault.jpg)](https://youtu.be/hSyf3eV8cic)
+
+### Play Store 
+
+[Wayback Machine](https://web.archive.org/web/20230614061651/https://play.google.com/store/apps/details?id=it.auties.styders)
